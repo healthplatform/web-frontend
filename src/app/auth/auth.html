@@ -1,0 +1,28 @@
+<div class="login-form padding20 block-shadow">
+  <form name="loginForm" ng-submit="auth.submit(credentials)" novalidate data-role="validator">
+    <h1 class="text-light">HealthPlatform.io</h1>
+    <hr class="thin"/>
+    <br/>
+    <div class="input-control text full-size" data-role="input">
+      <label for="email">Email:</label>
+      <input type="text" data-validate-func="email" placeholder="email"
+             name="email" id="email"
+             ng-model="credentials.email" required
+             data-validate-hint="Not valid email address" style="padding-right: 5px;">
+      <button class="button helper-button clear"><span class="mif-cross"></span></button>
+    </div>
+    <br/>
+    <br/>
+    <div class="input-control password full-size" data-role="input">
+      <label for="password">Password:</label>
+      <input type="password" name="password" id="password" ng-model="credentials.password" required>
+      <button class="button helper-button reveal"><span class="mif-looks"></span></button>
+    </div>
+    <br/>
+    <br/>
+    <div class="form-actions">
+      <input type="submit" class="button" ng-class="loginForm.$valid ? 'primary': ''" ng-disabled="loginForm.$invalid" value="Login">
+      <button type="button" class="button link">Request access</button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,3 @@
+[submodule "dist"]
+	path = dist
+	url = https://SamuelMarks@github.com/healthplatform/healthplatform.github.io.git
