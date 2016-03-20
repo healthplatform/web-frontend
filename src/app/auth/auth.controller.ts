@@ -34,13 +34,15 @@ export class AuthController {
       ).length) {
       (<any>$).Notify({
         caption: 'Authenticated...',
-        content: `Welcome back ${credentials.email.slice(0, credentials.email.indexOf('@'))}`,
+        content: `Welcome back ${
+          credentials.email.slice(0, credentials.email.indexOf('@'))}`,
         type: 'success'
       });
       this.stateSrv.go('dashboard');
     } else {
-      const error_description: string = credentials.email && AuthController.isEmail(credentials.email)
-        ? 'Authentication error' : 'Invalid email';
+      const error_description: string =
+        credentials.email && AuthController.isEmail(credentials.email)
+          ? 'Authentication error' : 'Invalid email';
       (<any>$).Notify({
         caption: 'Error',
         content: error_description,
