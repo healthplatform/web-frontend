@@ -32,12 +32,16 @@ export class AuthController {
         user.email === credentials.email &&
         user.password === credentials.password
       ).length) {
+      const base_email = credentials.email.slice(0, credentials.email.indexOf('@'));
       (<any>$).Notify({
         caption: 'Authenticated...',
-        content: `Welcome back ${
-          credentials.email.slice(0, credentials.email.indexOf('@'))}`,
+        content: `Welcome back ${base_email}`,
         type: 'success'
       });
+
+      localStorage.setItem('email', credentials.email);
+      localStorage.setItem('base_email', base_email);
+
       this.stateSrv.go('dashboard');
     } else {
       const error_description: string =
