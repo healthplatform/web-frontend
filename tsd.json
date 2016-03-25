@@ -6,13 +6,13 @@
   "bundle": ".tmp/typings/tsd.d.ts",
   "installed": {
     "angularjs/angular-animate.d.ts": {
-      "commit": "bb051830df88f5a55dcf06b7fe85bf6b62cc97f2"
+      "commit": "de6c3dd94feaeb21f20054b9f30d5dabc5efabd"
     },
     "angularjs/angular-sanitize.d.ts": {
       "commit": "bb051830df88f5a55dcf06b7fe85bf6b62cc97f2"
     },
     "jquery/jquery.d.ts": {
-      "commit": "bb051830df88f5a55dcf06b7fe85bf6b62cc97f2"
+      "commit": "a44529fcb1e1cdc0355e71c42a6048de99b57c34"
     },
     "angularjs/angular-resource.d.ts": {
       "commit": "bb051830df88f5a55dcf06b7fe85bf6b62cc97f2"
@@ -21,7 +21,7 @@
       "commit": "bb051830df88f5a55dcf06b7fe85bf6b62cc97f2"
     },
     "angularjs/angular.d.ts": {
-      "commit": "bb051830df88f5a55dcf06b7fe85bf6b62cc97f2"
+      "commit": "a44529fcb1e1cdc0355e71c42a6048de99b57c34"
     },
     "angularjs/angular-mocks.d.ts": {
       "commit": "bb051830df88f5a55dcf06b7fe85bf6b62cc97f2"
@@ -37,6 +37,9 @@
     },
     "moment/moment-node.d.ts": {
       "commit": "bb051830df88f5a55dcf06b7fe85bf6b62cc97f2"
+    },
+    "ui-grid/ui-grid.d.ts": {
+      "commit": "a44529fcb1e1cdc0355e71c42a6048de99b57c34"
     }
   }
 }

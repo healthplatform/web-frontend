@@ -10,7 +10,9 @@ import {acmeMalarkey} from '../app/components/malarkey/malarkey.directive';
 import {AuthController} from './auth/auth.controller';
 import {Auth} from './auth/auth.service';
 import {DashboardController} from './dashboard/dashboard.controller';
-
+import {VisitsController} from './visits/visits.controller';
+import {sidebar} from './dashboard/sidebar.directive';
+import {metro_navbar} from './dashboard/metro-navbar.directive';
 
 declare var malarkey: any;
 declare var moment: moment.MomentStatic;
@@ -18,7 +20,8 @@ declare var moment: moment.MomentStatic;
 module healthPlatform {
   'use strict';
 
-  angular.module('healthPlatform', ['ngAnimate', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngAria', 'ngResource', 'ui.router', 'toastr'])
+  angular.module('healthPlatform', ['ngAnimate', 'ngTouch', 'ngSanitize', 'ngMessages',
+                                    'ngAria', 'ngResource', 'ui.router', 'toastr', 'ui.grid', 'ui.grid.selection'])
     // .constant('malarkey', malarkey)
     // .constant('moment', moment)
     .config(config)
@@ -29,6 +32,9 @@ module healthPlatform {
     .service('Auth', Auth)
     .controller('AuthController', AuthController)
     .controller('DashboardController', DashboardController)
+    .controller('VisitsController', VisitsController)
+    .directive('sidebar', sidebar)
+    .directive('metronavbar', metro_navbar)
     .directive('acmeNavbar', acmeNavbar)
     .directive('acmeMalarkey', acmeMalarkey);
 }

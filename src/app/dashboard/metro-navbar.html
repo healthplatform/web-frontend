@@ -1,0 +1,41 @@
+<div class="app-bar fixed-top darcula" data-role="appbar">
+  <a ui-sref="auth" class="app-bar-element branding">HealthPlatform.io</a>
+  <span class="app-bar-divider"></span>
+  <ul class="app-bar-menu">
+    <li>
+      <a href="" class="dropdown-toggle">Admin</a>
+      <ul class="d-menu darcula" data-role="dropdown">
+        <li><a href=""><span class="mif-user icon"></span>Manage Users</a></li>
+        <li><a href=""><span class="mif-user-plus icon"></span>Quick-add User</a></li>
+        <li class="divider"></li>
+        <li>
+          <a href="" class="dropdown-toggle">Roles</a>
+          <ul class="d-menu" data-role="dropdown">
+            <li><a href="">Doctor (on-staff)</a></li>
+            <li><a href="">Doctor (referral)</a></li>
+            <li><a href="">Specialist (referral)</a></li>
+            <li><a href="">Medical professional (other)</a></li>
+            <li><a href="">General staff</a></li>
+            <li><a href="">Patient</a></li>
+            <li class="divider"></li>
+            <li><a href=""><span class="mif-books icon"></span> Add</a></li>
+          </ul>
+        <li class="divider"></li>
+        <li><a href=""><span class="mif-table icon"></span> Logs</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <div class="app-bar-element place-right">
+    <span class="dropdown-toggle"><span class="mif-cog"></span> {{auth.Auth.getEmail()}}</span>
+    <div class="app-bar-drop-container padding10 place-right no-margin-top block-shadow fg-dark" data-role="dropdown"
+         data-no-close="true" style="width: 220px">
+      <h2 style="color: lightslategrey">Quick settings</h2>
+      <ul class="unstyled-list fg-dark darcula">
+        <li><a href="" class="fg-white1 fg-hover-yellow">Profile</a></li>
+        <li><a href="" class="fg-white2 fg-hover-yellow">Security</a></li>
+        <li><a ng-click="auth.Auth.logout()" class="fg-white3 fg-hover-yellow">Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -1,10 +1,12 @@
+import {Auth} from './auth.service';
+
 interface ICredentials {
   email: string;
   password: string;
 }
 
 export class AuthController {
-  private credentials: ICredentials;
+  public credentials: ICredentials;
   private logger: ng.ILogService;
   private stateSrv: angular.ui.IStateService;
   private sampleUsers: ICredentials[] = [
@@ -15,7 +17,9 @@ export class AuthController {
   ];
 
   /* @ngInject */
-  constructor($log: ng.ILogService, $state: angular.ui.IStateService) {
+  constructor($log: ng.ILogService,
+              $state: angular.ui.IStateService,
+              public Auth: Auth) {
     this.logger = $log;
     this.stateSrv = $state;
   }

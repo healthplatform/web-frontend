@@ -15,7 +15,7 @@ function browserSyncInit(baseDir, browser) {
   browser = browser === undefined ? 'default' : browser;
 
   var routes = null;
-  if(baseDir === conf.paths.src || (util.isArray(baseDir) && baseDir.indexOf(conf.paths.src) !== -1)) {
+  if (baseDir === conf.paths.src || (util.isArray(baseDir) && baseDir.indexOf(conf.paths.src) !== -1)) {
     routes = {
       '/bower_components': 'bower_components'
     };
@@ -23,7 +23,11 @@ function browserSyncInit(baseDir, browser) {
 
   var server = {
     baseDir: baseDir,
-    routes: routes
+    routes: routes,
+    middleware: [proxyMiddleware('/api', {
+      target: 'http://localhost:3000',
+      changeOrigin: true   // for vhosted sites, changes host header to match to target's host
+    })]
   };
 
   /*

@@ -13,6 +13,12 @@ export function routerConfig($stateProvider: angular.ui.IStateProvider, $urlRout
       controller: 'DashboardController',
       controllerAs: 'dashboard'
     })
+    .state('visits', {
+      url: '/visits/:medicareNo',
+      templateUrl: 'app/visits/visits.html',
+      controller: 'VisitsController',
+      controllerAs: 'visits'
+    })
   ;
 
   $urlRouterProvider.otherwise('/');

@@ -22,6 +22,10 @@ export class Auth implements IAuth {
     }
   }
 
+  getEmail(): string {
+    return localStorage.getItem('email');
+  }
+
   logout() {
     localStorage.clear();
     this.$state.go('auth');

@@ -1,141 +1,72 @@
-<div class="app-bar fixed-top darcula" data-role="appbar">
-  <a ui-sref="auth" class="app-bar-element branding">HealthPlatform.io</a>
-  <span class="app-bar-divider"></span>
-  <ul class="app-bar-menu">
-    <li>
-      <a href="" class="dropdown-toggle">Admin</a>
-      <ul class="d-menu darcula" data-role="dropdown">
-        <li><a href=""><span class="mif-user icon"></span>Manage Users</a></li>
-        <li><a href=""><span class="mif-user-plus icon"></span>Quick-add User</a></li>
-        <li class="divider"></li>
-        <li>
-          <a href="" class="dropdown-toggle">Roles</a>
-          <ul class="d-menu" data-role="dropdown">
-            <li><a href="">Doctor (on-staff)</a></li>
-            <li><a href="">Doctor (referral)</a></li>
-            <li><a href="">Specialist (referral)</a></li>
-            <li><a href="">Medical professional (other)</a></li>
-            <li><a href="">General staff</a></li>
-            <li><a href="">Patient</a></li>
-            <li class="divider"></li>
-            <li><a href=""><span class="mif-books icon"></span> Add</a></li>
-          </ul>
-        <li class="divider"></li>
-        <li><a href=""><span class="mif-table icon"></span> Logs</a></li>
-      </ul>
-    </li>
-  </ul>
-
-  <div class="app-bar-element place-right">
-    <span class="dropdown-toggle"><span class="mif-cog"></span> {{dashboard.email}}</span>
-    <div class="app-bar-drop-container padding10 place-right no-margin-top block-shadow fg-dark" data-role="dropdown"
-         data-no-close="true" style="width: 220px">
-      <h2 style="color: lightslategrey">Quick settings</h2>
-      <ul class="unstyled-list fg-dark darcula">
-        <li><a href="" class="fg-white1 fg-hover-yellow">Profile</a></li>
-        <li><a href="" class="fg-white2 fg-hover-yellow">Security</a></li>
-        <li><a ng-click="dashboard.Auth.logout()" class="fg-white3 fg-hover-yellow">Logout</a></li>
-      </ul>
-    </div>
-  </div>
-</div>
+<metronavbar></metronavbar>
 
 <div class="page-content">
   <div class="flex-grid no-responsive-future" style="height: 100%;">
     <div class="row" style="height: 100%">
-      <div class="cell size-x200" id="cell-sidebar" style="background-color: #71b1d1; height: 100%">
-        <ul class="sidebar">
-          <li><a href="#">
-            <span class="mif-calendar icon"></span>
-            <span class="title">Calendar</span>
-            <span class="counter">0</span>
-          </a></li>
-
-          <li><a href="#">
-            <span class="mif-notification icon"></span>
-            <span class="title">Notifications</span>
-            <span class="counter">1</span>
-          </a></li>
-
-          <li class="active"><a href="#">
-            <span class="mif-ambulance icon"></span>
-            <span class="title">Patient visits</span>
-            <span class="counter">2</span>
-          </a></li>
-
-          <li><a href="#">
-            <span class="mif-cabinet icon"></span>
-            <span class="title">Clinic management</span>
-            <span class="counter">3</span>
-          </a></li>
-
-          <li><a href="#">
-            <span class="mif-list icon"></span>
-            <span class="title">Inventory</span>
-            <span class="counter">4</span>
-          </a></li>
-
-          <li><a href="#">
-            <span class="mif-security icon"></span>
-            <span class="title">Admin</span>
-            <span class="counter">5</span>
-          </a></li>
-        </ul>
-      </div>
+      <sidebar></sidebar>
       <div class="cell auto-size padding20 bg-white" id="cell-content">
         <h1 class="text-light">Patient visits <span class="mif-ambulance place-right"></span></h1>
         <hr class="thin bg-grayLighter">
         <button class="button primary"><span class="mif-plus"></span> New</button>
-        <button class="button success"><span class="mif-search"></span> Search</button>
+
+        <div class="input-control text" data-role="input" style="text-align-all: right">
+          <form ng-submit="dashboard.search()">
+            <label for="search"></label>
+            <input id="search" type="text" ng-model="dashboard.searchText"/>
+            <button class="button success" type="submit"><span class="mif-search"></span></button>
+          </form>
+        </div>
+
         <hr class="thin bg-grayLighter">
+
+        <!--<div ui-grid="dashboard.gridOptions" ui-grid-selection class="grid"></div>-->
+
+        <hr class="thin bg-grayLighter">
+
         <table class="dataTable border bordered" data-auto-width="false">
           <thead>
           <tr>
-            <td style="width: 20px">
+            <td class="sortable-column" style="width: 100px"
+                ng-class="{'sort-asc': dashboard.sortType === 'medicare_no',
+                           'sort-desc': dashboard.sortType === '-medicare_no'}"
+                ng-click="dashboard.sortType = dashboard.sortType === 'medicare_no'? '-'+dashboard.sortType: 'medicare_no'">
+              Medicare #
             </td>
-            <td class="sortable-column sort-asc" style="width: 100px">ID</td>
-            <td class="sortable-column">Machine name</td>
-            <td class="sortable-column">Address</td>
-            <td class="sortable-column" style="width: 20px">Status</td>
-            <td style="width: 20px">Switch</td>
+            <td class="sortable-column"
+                ng-class="{'sort-asc': dashboard.sortType === 'name',
+                           'sort-desc': dashboard.sortType === '-name'}"
+                ng-click="dashboard.sortType = dashboard.sortType === 'name'? '-'+dashboard.sortType: 'name'">
+              Name
+            </td>
+            <td class="sortable-column"
+                ng-class="{'sort-asc': dashboard.sortType === 'suburb',
+                           'sort-desc': dashboard.sortType === '-suburb'}"
+                ng-click="dashboard.sortType = dashboard.sortType === 'suburb'? '-'+dashboard.sortType: 'suburb'">
+              Suburb
+            </td>
+            <td class="sortable-column" style="width: 110px"
+                ng-class="{'sort-asc': dashboard.sortType === 'callback',
+                           'sort-desc': dashboard.sortType === '-callback'}"
+                ng-click="dashboard.sortType = dashboard.sortType === 'callback'? '-'+dashboard.sortType: 'callback'">
+              Callback
+            </td>
+            <td class="sortable-column" style="width: 150px"
+                ng-class="{'sort-asc': dashboard.sortType === 'last_visit',
+                           'sort-desc': dashboard.sortType === '-last_visit'}"
+                ng-click="dashboard.sortType = dashboard.sortType === 'last_visit'? '-'+dashboard.sortType: 'last_visit'">
+              Last visit
+            </td>
           </tr>
           </thead>
+
           <tbody>
-          <tr>
-            <td>
-              <label class="input-control checkbox small-check no-margin">
-                <input type="checkbox">
-                <span class="check"></span>
-              </label>
-            </td>
-            <td>123890723212</td>
-            <td>Machine number 1</td>
-            <td><a href="http://virtuals.com/machines/123890723212">link</a></td>
-            <td class="align-center"><span class="mif-checkmark fg-green"></span></td>
-            <td>
-              <label class="switch-original">
-                <input type="checkbox" checked>
-                <span class="check"></span>
-              </label>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <label class="input-control checkbox small-check no-margin">
-                <input type="checkbox">
-                <span class="check"></span>
-              </label>
-            </td>
-            <td>123890723212</td>
-            <td>Machine number 2</td>
-            <td><a href="http://virtuals.com/machines/123890723212">link</a></td>
-            <td class="align-center"><span class="mif-stop fg-red"></span></td>
-            <td>
-              <label class="switch-original">
-                <input type="checkbox">
-                <span class="check"></span>
-              </label>
-            </td>
+          <tr
+            ng-repeat="record in dashboard.patientRecordSummary | orderBy:dashboard.sortType | filter:dashboard.searchText">
+            <td><a ui-sref="visits({medicareNo: record.medicare_no})">{{ record.medicare_no }}</a></td>
+            <td>{{ record.name }}</td>
+            <td>{{ record.suburb }}</td>
+            <td>{{ record.callback }}</td>
+            <td>{{ record.last_visit }}</td>
           </tr>
           </tbody>
         </table>
@@ -143,14 +74,3 @@
     </div>
   </div>
 </div>
-
-<script>
-  $(function () {
-    $('.sidebar').on('click', 'li', function () {
-      if (!$(this).hasClass('active')) {
-        $('.sidebar li').removeClass('active');
-        $(this).addClass('active');
-      }
-    })
-  })
-</script>

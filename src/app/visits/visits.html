@@ -1,0 +1,18 @@
+<metronavbar></metronavbar>
+<div class="page-content">
+  <div class="flex-grid no-responsive-future" style="height: 100%;">
+    <div class="row" style="height: 100%">
+      <sidebar></sidebar>
+      <div class="cell auto-size padding20 bg-white" id="cell-content">
+        <h1 class="text-light">Patient visits <span class="mif-ambulance place-right"></span></h1>
+
+        <hr class="thin bg-grayLighter">
+        <pre>
+        {{visits.$stateParams | json}}
+        </pre>
+
+
+      </div>
+    </div>
+  </div>
+</div>
