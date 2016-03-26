@@ -21,8 +21,8 @@
     <br/>
     <br/>
     <div class="form-actions">
-      <input type="submit" class="button" ng-class="loginForm.$valid ? 'primary': ''"
-             ng-disabled="loginForm.$invalid" value="Login">
+      <input type="submit" class="button" ng-class="{'primary': loginForm.$valid}"
+             ng-disabled="loginForm.$invalid || loginForm.$pristine" value="Login">
       <button type="button" class="button link">Request access</button>
     </div>
   </form>

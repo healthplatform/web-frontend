@@ -1,76 +1,74 @@
 <metronavbar></metronavbar>
 
-<div class="page-content">
-  <div class="flex-grid no-responsive-future" style="height: 100%;">
-    <div class="row" style="height: 100%">
-      <sidebar></sidebar>
-      <div class="cell auto-size padding20 bg-white" id="cell-content">
-        <h1 class="text-light">Patient visits <span class="mif-ambulance place-right"></span></h1>
-        <hr class="thin bg-grayLighter">
-        <button class="button primary"><span class="mif-plus"></span> New</button>
+<div class="flex-grid no-responsive-future" style="height: 100%;">
+  <div class="row" style="height: 100%">
+    <sidebar></sidebar>
+    <div class="cell auto-size padding20 bg-white" id="cell-content">
+      <h1 class="text-light">Patient visits <span class="mif-ambulance place-right"></span></h1>
+      <hr class="thin bg-grayLighter">
+      <button class="button primary"><span class="mif-plus"></span> New</button>
 
-        <div class="input-control text" data-role="input" style="text-align-all: right">
-          <form ng-submit="dashboard.search()">
-            <label for="search"></label>
-            <input id="search" type="text" ng-model="dashboard.searchText"/>
-            <button class="button success" type="submit"><span class="mif-search"></span></button>
-          </form>
-        </div>
-
-        <hr class="thin bg-grayLighter">
-
-        <!--<div ui-grid="dashboard.gridOptions" ui-grid-selection class="grid"></div>-->
-
-        <hr class="thin bg-grayLighter">
-
-        <table class="dataTable border bordered" data-auto-width="false">
-          <thead>
-          <tr>
-            <td class="sortable-column" style="width: 100px"
-                ng-class="{'sort-asc': dashboard.sortType === 'medicare_no',
-                           'sort-desc': dashboard.sortType === '-medicare_no'}"
-                ng-click="dashboard.sortType = dashboard.sortType === 'medicare_no'? '-'+dashboard.sortType: 'medicare_no'">
-              Medicare #
-            </td>
-            <td class="sortable-column"
-                ng-class="{'sort-asc': dashboard.sortType === 'name',
-                           'sort-desc': dashboard.sortType === '-name'}"
-                ng-click="dashboard.sortType = dashboard.sortType === 'name'? '-'+dashboard.sortType: 'name'">
-              Name
-            </td>
-            <td class="sortable-column"
-                ng-class="{'sort-asc': dashboard.sortType === 'suburb',
-                           'sort-desc': dashboard.sortType === '-suburb'}"
-                ng-click="dashboard.sortType = dashboard.sortType === 'suburb'? '-'+dashboard.sortType: 'suburb'">
-              Suburb
-            </td>
-            <td class="sortable-column" style="width: 110px"
-                ng-class="{'sort-asc': dashboard.sortType === 'callback',
-                           'sort-desc': dashboard.sortType === '-callback'}"
-                ng-click="dashboard.sortType = dashboard.sortType === 'callback'? '-'+dashboard.sortType: 'callback'">
-              Callback
-            </td>
-            <td class="sortable-column" style="width: 150px"
-                ng-class="{'sort-asc': dashboard.sortType === 'last_visit',
-                           'sort-desc': dashboard.sortType === '-last_visit'}"
-                ng-click="dashboard.sortType = dashboard.sortType === 'last_visit'? '-'+dashboard.sortType: 'last_visit'">
-              Last visit
-            </td>
-          </tr>
-          </thead>
-
-          <tbody>
-          <tr
-            ng-repeat="record in dashboard.patientRecordSummary | orderBy:dashboard.sortType | filter:dashboard.searchText">
-            <td><a ui-sref="visits({medicareNo: record.medicare_no})">{{ record.medicare_no }}</a></td>
-            <td>{{ record.name }}</td>
-            <td>{{ record.suburb }}</td>
-            <td>{{ record.callback }}</td>
-            <td>{{ record.last_visit }}</td>
-          </tr>
-          </tbody>
-        </table>
+      <div class="input-control text" data-role="input" style="text-align-all: right">
+        <form ng-submit="dashboard.search()">
+          <label for="search"></label>
+          <input id="search" type="text" ng-model="dashboard.searchText"/>
+          <button class="button success" type="submit"><span class="mif-search"></span></button>
+        </form>
       </div>
+
+      <hr class="thin bg-grayLighter">
+
+      <!--<div ui-grid="dashboard.gridOptions" ui-grid-selection class="grid"></div>-->
+
+      <hr class="thin bg-grayLighter">
+
+      <table class="dataTable border bordered" data-auto-width="false">
+        <thead>
+        <tr>
+          <td class="sortable-column" style="width: 100px"
+              ng-class="{'sort-asc': dashboard.sortType === 'medicare_no',
+                           'sort-desc': dashboard.sortType === '-medicare_no'}"
+              ng-click="dashboard.sortType = dashboard.sortType === 'medicare_no'? '-'+dashboard.sortType: 'medicare_no'">
+            Medicare #
+          </td>
+          <td class="sortable-column"
+              ng-class="{'sort-asc': dashboard.sortType === 'name',
+                           'sort-desc': dashboard.sortType === '-name'}"
+              ng-click="dashboard.sortType = dashboard.sortType === 'name'? '-'+dashboard.sortType: 'name'">
+            Name
+          </td>
+          <td class="sortable-column"
+              ng-class="{'sort-asc': dashboard.sortType === 'suburb',
+                           'sort-desc': dashboard.sortType === '-suburb'}"
+              ng-click="dashboard.sortType = dashboard.sortType === 'suburb'? '-'+dashboard.sortType: 'suburb'">
+            Suburb
+          </td>
+          <td class="sortable-column" style="width: 110px"
+              ng-class="{'sort-asc': dashboard.sortType === 'callback',
+                           'sort-desc': dashboard.sortType === '-callback'}"
+              ng-click="dashboard.sortType = dashboard.sortType === 'callback'? '-'+dashboard.sortType: 'callback'">
+            Callback
+          </td>
+          <td class="sortable-column" style="width: 150px"
+              ng-class="{'sort-asc': dashboard.sortType === 'last_visit',
+                           'sort-desc': dashboard.sortType === '-last_visit'}"
+              ng-click="dashboard.sortType = dashboard.sortType === 'last_visit'? '-'+dashboard.sortType: 'last_visit'">
+            Last visit
+          </td>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr
+          ng-repeat="record in dashboard.patientRecordSummary | orderBy:dashboard.sortType | filter:dashboard.searchText">
+          <td><a ui-sref="subdash.visits({medicareNo: record.medicare_no})">{{ record.medicare_no }}</a></td>
+          <td>{{ record.name }}</td>
+          <td>{{ record.suburb }}</td>
+          <td>{{ record.callback }}</td>
+          <td>{{ record.last_visit }}</td>
+        </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

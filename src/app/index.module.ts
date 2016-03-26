@@ -13,6 +13,12 @@ import {DashboardController} from './dashboard/dashboard.controller';
 import {VisitsController} from './visits/visits.controller';
 import {sidebar} from './dashboard/sidebar.directive';
 import {metro_navbar} from './dashboard/metro-navbar.directive';
+import {SubdashController} from './subdash/subdash.controller';
+import {AdminController} from './admin/admin.controller';
+import {CalendarController} from './calendar/calendar.controller';
+import {ClinicController} from './clinic/clinic.controller';
+import {InventoryController} from './inventory/inventory.controller';
+import {NotificationsController} from './notifications/notifications.controller';
 
 declare var malarkey: any;
 declare var moment: moment.MomentStatic;
@@ -20,8 +26,9 @@ declare var moment: moment.MomentStatic;
 module healthPlatform {
   'use strict';
 
-  angular.module('healthPlatform', ['ngAnimate', 'ngTouch', 'ngSanitize', 'ngMessages',
-                                    'ngAria', 'ngResource', 'ui.router', 'toastr', 'ui.grid', 'ui.grid.selection'])
+  angular.module('healthPlatform', [
+      'ngAnimate', 'ngTouch', 'ngSanitize', 'ngMessages',
+      'ngAria', 'ngResource', 'ui.router', 'toastr', 'ui.grid', 'ui.grid.selection'])
     // .constant('malarkey', malarkey)
     // .constant('moment', moment)
     .config(config)
@@ -33,6 +40,12 @@ module healthPlatform {
     .controller('AuthController', AuthController)
     .controller('DashboardController', DashboardController)
     .controller('VisitsController', VisitsController)
+    .controller('SubdashController', SubdashController)
+    .controller('AdminController', AdminController)
+    .controller('CalendarController', CalendarController)
+    .controller('ClinicController', ClinicController)
+    .controller('InventoryController', InventoryController)
+    .controller('NotificationsController', NotificationsController)
     .directive('sidebar', sidebar)
     .directive('metronavbar', metro_navbar)
     .directive('acmeNavbar', acmeNavbar)

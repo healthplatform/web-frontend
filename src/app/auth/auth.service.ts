@@ -4,6 +4,7 @@ export interface IAuth {
   // ($log: ng.ILogService, $state: angular.ui.IStateService): Auth;
   redirUnlessAuth(role?: string): void;
   logout(): void;
+  getEmail(): string;
 }
 
 export class Auth implements IAuth {
