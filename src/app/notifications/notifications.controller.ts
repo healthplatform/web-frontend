@@ -1,12 +1,8 @@
-import {Auth} from '../auth/auth.service';
-
 export class NotificationsController {
   /* @ngInject */
   constructor(private $log: ng.ILogService,
               public $stateParams: angular.ui.IStateParamsService,
-              private $state: angular.ui.IStateService,
-              private Auth: Auth) {
-    Auth.redirUnlessAuth();
+              private $state: angular.ui.IStateService) {
 
     let p = $state.$current.toString();
     (<any>$).Notify({
@@ -14,6 +10,6 @@ export class NotificationsController {
       content: `${p.substr(p.indexOf('.') + 1)} state not available in demo`,
       type: 'info'
     });
-    $state.go('dashboard');
+    $state.go('subdash.visits');
   }
 }

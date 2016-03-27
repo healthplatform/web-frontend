@@ -7,8 +7,6 @@ interface ICredentials {
 
 export class AuthController {
   public credentials: ICredentials;
-  private logger: ng.ILogService;
-  private stateSrv: angular.ui.IStateService;
   private sampleUsers: ICredentials[] = [
     {
       email: 'foo@bar.com',
@@ -17,11 +15,9 @@ export class AuthController {
   ];
 
   /* @ngInject */
-  constructor($log: ng.ILogService,
-              $state: angular.ui.IStateService,
-              public Auth: Auth) {
-    this.logger = $log;
-    this.stateSrv = $state;
+  constructor(private $log: ng.ILogService,
+              private Auth: Auth,
+              private $state: angular.ui.IStateService) {
   }
 
   protected static isEmail(val: string): boolean {
@@ -29,27 +25,25 @@ export class AuthController {
     return /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i.test(val);
   }
 
-  submit(credentials: ICredentials) {
-    this.credentials = credentials;
-
+  submit() {
     if (this.sampleUsers.filter((user: ICredentials) =>
-        user.email === credentials.email &&
-        user.password === credentials.password
+        user.email === this.credentials.email &&
+        user.password === this.credentials.password
       ).length) {
-      const base_email = credentials.email.slice(0, credentials.email.indexOf('@'));
+      const base_email = this.credentials.email.slice(0, this.credentials.email.indexOf('@'));
       (<any>$).Notify({
         caption: 'Authenticated...',
         content: `Welcome back ${base_email}`,
         type: 'success'
       });
 
-      localStorage.setItem('email', credentials.email);
+      localStorage.setItem('email', this.credentials.email);
       localStorage.setItem('base_email', base_email);
 
-      this.stateSrv.go('dashboard');
+      this.$state.go('subdash.visits');
     } else {
       const error_description: string =
-        credentials.email && AuthController.isEmail(credentials.email)
+        this.credentials.email && AuthController.isEmail(this.credentials.email)
           ? 'Authentication error' : 'Invalid email';
       (<any>$).Notify({
         caption: 'Error',
@@ -57,5 +51,13 @@ export class AuthController {
         type: 'alert'
       });
     }
+  }
+
+  demo() {
+    this.credentials = <ICredentials>{
+        email: 'foo@bar.com',
+        password: 'verysecure'
+      } || this.sampleUsers[0];
+    this.submit();
   }
 }

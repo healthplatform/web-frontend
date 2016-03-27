@@ -1,5 +1,6 @@
 /** @ngInject */
-export function routerConfig($stateProvider: angular.ui.IStateProvider, $urlRouterProvider: angular.ui.IUrlRouterProvider) {
+export function routerConfig($stateProvider: angular.ui.IStateProvider,
+                             $urlRouterProvider: angular.ui.IUrlRouterProvider) {
   $stateProvider
     .state('auth', {
       url: '/',
@@ -7,22 +8,23 @@ export function routerConfig($stateProvider: angular.ui.IStateProvider, $urlRout
       controller: 'AuthController',
       controllerAs: 'auth'
     })
-    .state('dashboard', {
-      url: '/dashboard',
-      templateUrl: 'app/dashboard/dashboard.html',
-      controller: 'DashboardController',
-      controllerAs: 'dashboard'
-    })
     .state('subdash', {
       templateUrl: 'app/subdash/subdash.html',
       controller: 'SubdashController',
-      controllerAs: 'subdash'
+      controllerAs: 'subdash',
+      abstract: true
     })
     .state('subdash.visits', {
-      url: '/visits/:medicareNo',
+      url: '/visits',
       templateUrl: 'app/visits/visits.html',
       controller: 'VisitsController',
       controllerAs: 'visits'
+    })
+    .state('subdash.patient_records', {
+      url: '/patient_records/:medicareNo',
+      templateUrl: 'app/patient_records/patient_records.html',
+      controller: 'PatientRecordsController',
+      controllerAs: 'patientRecords'
     })
     .state('subdash.admin', {
       url: '/admin',
