@@ -2,8 +2,9 @@ export interface IPatientRecordSummary {
   medicare_no: string;
   name: string;
   suburb: string;
-  callback: string;
-  last_visit: string;
+  callback: Date;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export class Visits {
@@ -19,7 +20,7 @@ export class Visits {
 
   get(): ng.IPromise<{}> {
     const self = this,
-      key = '[GET] /api/visit',
+      key = '[GET] /api/visits',
       cached_data: IPatientRecordSummary[] = <IPatientRecordSummary[]>this.cache.get(key);
 
     if (cached_data) {
@@ -28,10 +29,10 @@ export class Visits {
       );
     } else {
       const deferred = this.$q.defer();
-      this.$http.get('/api/visit').then(
-        function (response: ng.IHttpPromiseCallbackArg<IPatientRecordSummary[]>) {
-          self.cache.put(key, <IPatientRecordSummary[]>response.data);
-          deferred.resolve(<IPatientRecordSummary[]>response.data);
+      this.$http.get('/api/visits').then(
+        function (response: ng.IHttpPromiseCallbackArg<{visits: IPatientRecordSummary[]}>) {
+          self.cache.put(key, <IPatientRecordSummary[]>response.data.visits);
+          deferred.resolve(<IPatientRecordSummary[]>response.data.visits);
         },
         function (errors: ng.IHttpPromiseCallbackArg<{message?: string, error_message?: string}>) {
           self.$log.debug(errors);

@@ -45,8 +45,8 @@
     <td><a ui-sref="subdash.patient_records({medicareNo: record.medicare_no})">{{ record.medicare_no }}</a></td>
     <td>{{ record.name }}</td>
     <td>{{ record.suburb }}</td>
-    <td>{{ record.callback }}</td>
-    <td>{{ record.last_visit }}</td>
+    <td am-time-ago="record.callback"></td>
+    <td am-time-ago="record.createdAt"></td>
   </tr>
   </tbody>
 </table>

@@ -1,5 +1,5 @@
-Patient records state
-
-<pre>
-{{patientRecords.$stateParams | json}}
+<h3>Patient record</h3>
+<div data-role="preloader" data-type="cycle" data-style="color" ng-hide="!!patientRecords.thisVisit"></div>
+<pre ng-show="patientRecords.thisVisit">
+{{patientRecords.thisVisit | json}}
 </pre>

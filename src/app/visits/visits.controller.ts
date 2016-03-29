@@ -9,15 +9,14 @@ export class VisitsController {
   /* @ngInject */
   constructor(private $log: ng.ILogService,
               private Visits: Visits) {
-
     this.getVisits();
   }
 
   getVisits(/*offset?: number, limit?: number, filter?: string*/) {
     this.Visits.get().then((res: ng.IHttpPromiseCallbackArg<IPatientRecordSummary[]>) => {
-      this.summary = <IPatientRecordSummary[]>res;
-    }, (err: ng.IHttpPromiseCallbackArg<{message?: string, error_message?: string}>) => {
-      this.$log.error('err =', err);
-    });
+        this.summary = <IPatientRecordSummary[]>res;
+      }, (err: ng.IHttpPromiseCallbackArg<{message?: string, error_message?: string}>) =>
+        this.$log.error('err =', err)
+    );
   }
 }

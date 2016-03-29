@@ -31,9 +31,9 @@ module healthPlatform {
 
   angular.module('healthPlatform', [
       'ngAnimate', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngAria', 'ngResource',
-      'ui.router', 'toastr', 'ui.grid', 'ui.grid.selection'])
+      'ui.router', 'toastr', 'ui.grid', 'ui.grid.selection', 'angularMoment'])
     // .constant('malarkey', malarkey)
-    // .constant('moment', moment)
+    .constant('moment', moment)
     .config(config)
     .config(routerConfig)
     .run(runBlock)
