@@ -1,0 +1,9 @@
+<h3>Patient record</h3>
+
+<div data-role="preloader" data-type="cycle" data-style="color" ng-init="patient.get()"
+     ng-hide="!!patient.patient"></div>
+
+<pre ng-show="!!patient.patient">
+  {{ patient.patient | json}}
+</pre>
+

@@ -16,6 +16,14 @@
       </a>
     </li>
 
+    <li ng-class="{'active': sidebar.$state.$current.toString() === 'subdash.patients'}">
+      <a ui-sref="subdash.patients">
+        <span class="mif-user-plus icon"></span>
+        <span class="title">Patients</span>
+        <span class="counter">2</span>
+      </a>
+    </li>
+
     <li ng-class="{'active': sidebar.$state.$current.toString() === 'subdash.visits'}">
       <a ui-sref="subdash.visits">
         <span class="mif-ambulance icon"></span>

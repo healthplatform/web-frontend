@@ -9,7 +9,7 @@ import {acmeNavbar} from './components/navbar/navbar.directive';
 import {acmeMalarkey} from './components/malarkey/malarkey.directive';
 import {Auth} from './auth/auth.service';
 import {Visits} from './visits/visits.service';
-import {PatientRecords} from './patient_records/patient_records.service';
+import {Patient} from './patient/patient.service';
 import {AuthController} from './auth/auth.controller';
 import {VisitsController} from './visits/visits.controller';
 import {SubdashController} from './subdash/subdash.controller';
@@ -18,7 +18,7 @@ import {CalendarController} from './calendar/calendar.controller';
 import {ClinicController} from './clinic/clinic.controller';
 import {InventoryController} from './inventory/inventory.controller';
 import {NotificationsController} from './notifications/notifications.controller';
-import {PatientRecordsController} from './patient_records/patient_records.controller';
+import {PatientController} from './patient/patient.controller';
 import {SidebarController} from './dashboard_components/sidebar.controller';
 import {sidebar} from './dashboard_components/sidebar.directive';
 import {metro_navbar} from './dashboard_components/metro-navbar.directive';
@@ -41,7 +41,7 @@ module healthPlatform {
     .service('webDevTec', WebDevTecService)
     .service('Auth', Auth)
     .service('Visits', Visits)
-    .service('PatientRecords', PatientRecords)
+    .service('Patient', Patient)
     .controller('AuthController', AuthController)
     .controller('VisitsController', VisitsController)
     .controller('SubdashController', SubdashController)
@@ -50,7 +50,7 @@ module healthPlatform {
     .controller('ClinicController', ClinicController)
     .controller('InventoryController', InventoryController)
     .controller('NotificationsController', NotificationsController)
-    .controller('PatientRecordsController', PatientRecordsController)
+    .controller('PatientController', PatientController)
     .controller('SidebarController', SidebarController)
     .directive('sidebar', sidebar)
     .directive('metronavbar', metro_navbar)

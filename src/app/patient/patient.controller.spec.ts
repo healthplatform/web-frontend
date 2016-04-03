@@ -1,8 +1,8 @@
-import { PatientRecordsController } from './patient_records.controller.ts';
+import { PatientController } from './patient.controller.ts';
 import { WebDevTecService } from '../components/webDevTec/webDevTec.service';
 
 describe('controllers', () => {
-  let PatientRecordsController: PatientRecordsController;
+  let PatientController: PatientController;
 
   beforeEach(angular.mock.module('healthPlatform'));
 
@@ -10,6 +10,6 @@ describe('controllers', () => {
     webDevTec.data = [null, null, null, null, null];
     spyOn(toastr, 'info').and.callThrough();
 
-    PatientRecordsController = $controller('PatientRecordsController');
+    PatientController = $controller('PatientController');
   }));
 });

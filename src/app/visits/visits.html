@@ -42,7 +42,7 @@
   <tbody>
   <tr
     ng-repeat="record in visits.summary | orderBy:visits.sortType | filter:visits.searchText">
-    <td><a ui-sref="subdash.patient_records({medicareNo: record.medicare_no})">{{ record.medicare_no }}</a></td>
+    <td><a ui-sref="patient_record">{{ record.medicare_no }}</a></td>
     <td>{{ record.name }}</td>
     <td>{{ record.suburb }}</td>
     <td am-time-ago="record.callback"></td>

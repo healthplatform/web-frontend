@@ -20,11 +20,17 @@ export function routerConfig($stateProvider: angular.ui.IStateProvider,
       controller: 'VisitsController',
       controllerAs: 'visits'
     })
-    .state('subdash.patient_records', {
-      url: '/patient_records/:medicareNo',
-      templateUrl: 'app/patient_records/patient_records.html',
-      controller: 'PatientRecordsController',
-      controllerAs: 'patientRecords'
+    .state('subdash.patients', {
+      url: '/patients',
+      templateUrl: 'app/patient/patients.html',
+      controller: 'PatientController',
+      controllerAs: 'patients'
+    })
+    .state('subdash.patient_record', {
+      url: '/patient/:medicareNo',
+      templateUrl: 'app/patient/patient.html',
+      controller: 'PatientController',
+      controllerAs: 'patient'
     })
     .state('subdash.admin', {
       url: '/admin',
