@@ -10,6 +10,7 @@ import {acmeMalarkey} from './components/malarkey/malarkey.directive';
 import {Auth} from './auth/auth.service';
 import {Visits} from './visits/visits.service';
 import {Patient} from './patient/patient.service';
+import {Historic} from './historic/historic.service';
 import {AuthController} from './auth/auth.controller';
 import {VisitsController} from './visits/visits.controller';
 import {SubdashController} from './subdash/subdash.controller';
@@ -19,7 +20,9 @@ import {ClinicController} from './clinic/clinic.controller';
 import {InventoryController} from './inventory/inventory.controller';
 import {NotificationsController} from './notifications/notifications.controller';
 import {PatientController} from './patient/patient.controller';
+import {SubPatientController} from './subpatient/subpatient.controller';
 import {SidebarController} from './dashboard_components/sidebar.controller';
+import {HistoricController} from './historic/historic.controller';
 import {sidebar} from './dashboard_components/sidebar.directive';
 import {metro_navbar} from './dashboard_components/metro-navbar.directive';
 
@@ -42,6 +45,7 @@ module healthPlatform {
     .service('Auth', Auth)
     .service('Visits', Visits)
     .service('Patient', Patient)
+    .service('Historic', Historic)
     .controller('AuthController', AuthController)
     .controller('VisitsController', VisitsController)
     .controller('SubdashController', SubdashController)
@@ -49,8 +53,10 @@ module healthPlatform {
     .controller('CalendarController', CalendarController)
     .controller('ClinicController', ClinicController)
     .controller('InventoryController', InventoryController)
+    .controller('HistoricController', HistoricController)
     .controller('NotificationsController', NotificationsController)
     .controller('PatientController', PatientController)
+    .controller('SubPatientController', SubPatientController)
     .controller('SidebarController', SidebarController)
     .directive('sidebar', sidebar)
     .directive('metronavbar', metro_navbar)

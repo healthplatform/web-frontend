@@ -1,4 +1,5 @@
-<div class="cell size-x200" id="cell-sidebar" style="background-color: #71b1d1; height: 100%">
+<div class="cell size-x200" id="cell-sidebar"
+     style="background-color: #71b1d1; height: 100%; max-width: 641px">
   <ul class="sidebar">
     <li ng-class="{'active': sidebar.$state.$current.toString() === 'subdash.calendar'}">
       <a ui-sref="subdash.calendar">
@@ -16,7 +17,7 @@
       </a>
     </li>
 
-    <li ng-class="{'active': sidebar.$state.$current.toString() === 'subdash.patients'}">
+    <li ng-class="{'active': sidebar.$state.$current.toString().indexOf('patient') !== -1}">
       <a ui-sref="subdash.patients">
         <span class="mif-user-plus icon"></span>
         <span class="title">Patients</span>
@@ -28,7 +29,7 @@
       <a ui-sref="subdash.visits">
         <span class="mif-ambulance icon"></span>
         <span class="title">Patient visits</span>
-        <span class="counter">2</span>
+        <span class="counter">3</span>
       </a>
     </li>
 
@@ -36,7 +37,7 @@
       <a ui-sref="subdash.clinic">
         <span class="mif-cabinet icon"></span>
         <span class="title">Clinic management</span>
-        <span class="counter">3</span>
+        <span class="counter">4</span>
       </a>
     </li>
 
@@ -44,7 +45,7 @@
       <a ui-sref="subdash.inventory">
         <span class="mif-list icon"></span>
         <span class="title">Inventory</span>
-        <span class="counter">4</span>
+        <span class="counter">5</span>
       </a>
     </li>
 
@@ -52,7 +53,7 @@
       <a ui-sref="subdash.admin">
         <span class="mif-security icon"></span>
         <span class="title">Admin</span>
-        <span class="counter">5</span>
+        <span class="counter">6</span>
       </a>
     </li>
   </ul>

@@ -36,7 +36,7 @@
   <tbody>
   <tr
     ng-repeat="patient in patients.patients | orderBy:patients.sortType | filter:patients.searchText">
-    <td><a ui-sref="subdash.patient_record({medicareNo: patient.medicare_no})">{{ patient.medicare_no }}</a></td>
+    <td><a ui-sref="subpatient.patient({medicareNo: patient.medicare_no})">{{ patient.medicare_no }}</a></td>
     <td>{{ patient.contact.first_name }}</td>
     <td>Dr {{ patient.gp.first_name }} {{ patient.gp.last_name }}</td>
     <td am-time-ago="patient.createdAt"></td>

@@ -14,6 +14,11 @@ export function routerConfig($stateProvider: angular.ui.IStateProvider,
       controllerAs: 'subdash',
       abstract: true
     })
+    .state('subpatient', {
+      templateUrl: 'app/subpatient/subpatient.html',
+      controller: 'SubPatientController',
+      abstract: true
+    })
     .state('subdash.visits', {
       url: '/visits',
       templateUrl: 'app/visits/visits.html',
@@ -26,11 +31,22 @@ export function routerConfig($stateProvider: angular.ui.IStateProvider,
       controller: 'PatientController',
       controllerAs: 'patients'
     })
-    .state('subdash.patient_record', {
+    .state('subpatient.patient', {
       url: '/patient/:medicareNo',
       templateUrl: 'app/patient/patient.html',
-      controller: 'PatientController',
-      controllerAs: 'patient'
+      views: {
+        contact: {
+          template: 'contactttttt'
+        },
+        historic: {
+          templateUrl: 'app/historic/historic.html',
+          controller: 'HistoricController',
+          controllerAs: 'historic'
+        },
+        visits: {
+          template: 'visitsssss'
+        }
+      }
     })
     .state('subdash.admin', {
       url: '/admin',

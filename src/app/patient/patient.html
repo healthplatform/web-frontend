@@ -1,9 +1,24 @@
 <h3>Patient record</h3>
 
-<div data-role="preloader" data-type="cycle" data-style="color" ng-init="patient.get()"
-     ng-hide="!!patient.patient"></div>
+<div data-role="preloader" data-type="cycle" data-style="color" ng-init="patient.getAllById()"
+     ng-hide="!!patient.allPatientRelated"></div>
 
-<pre ng-show="!!patient.patient">
-  {{ patient.patient | json}}
+<pre ng-show="!!patient.allPatientRelated">
+  {{ patient.allPatientRelated | json}}
 </pre>
 
+
+<metronavbar></metronavbar>
+
+<div class="page-content">
+  <div class="flex-grid no-responsive-future">
+    <div class="row">
+      <sidebar></sidebar>
+
+      <div class="cell colspan8 bg-white">
+        <div ui-view="subpatient.patient_record"></div>
+      </div>
+      <div class="cell colspan4 bg-white">Hello world</div>
+    </div>
+  </div>
+</div>
