@@ -1,8 +1,8 @@
-import { HistoricController } from './historic.controller.ts';
+import { ContactController } from './contact.controller.ts';
 import { WebDevTecService } from '../components/webDevTec/webDevTec.service';
 
 describe('controllers', () => {
-  let HistoricController: HistoricController;
+  let ContactController: ContactController;
 
   beforeEach(angular.mock.module('healthPlatform'));
 
@@ -10,6 +10,6 @@ describe('controllers', () => {
     webDevTec.data = [null, null, null, null, null];
     spyOn(toastr, 'info').and.callThrough();
 
-    HistoricController = $controller('HistoricController');
+    ContactController = $controller('ContactController');
   }));
 });

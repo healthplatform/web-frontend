@@ -1,22 +1,23 @@
-import {Visits, IVisit} from './visits.service';
+import {IVisit, Visits} from './visits.service';
+
+interface IStateParamsService extends angular.ui.IStateParamsService {
+  medicareNo: string;
+}
 
 export class VisitsController {
-  public summary: IVisit[];
-  public email: string;
-  public searchText: string;
-  public sortType: string = 'name';
+  public visits: Array<IVisit>;
 
   /* @ngInject */
   constructor(private $log: ng.ILogService,
+              private $stateParams: IStateParamsService,
               private Visits: Visits) {
-    this.getVisits();
+    this.get();
   }
 
-  getVisits(/*offset?: number, limit?: number, filter?: string*/) {
-    this.Visits.get().then((res: ng.IHttpPromiseCallbackArg<IVisit[]>) => {
-        this.summary = <IVisit[]>res;
-      }, (err: ng.IHttpPromiseCallbackArg<{message?: string, error_message?: string}>) =>
-        this.$log.error('err =', err)
+  get() {
+    this.Visits.get(this.$stateParams.medicareNo).then((visits: Array<IVisit>) => {
+        this.visits = visits;
+      }
     );
   }
 }

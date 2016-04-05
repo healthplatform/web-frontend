@@ -20,9 +20,10 @@ import {ClinicController} from './clinic/clinic.controller';
 import {InventoryController} from './inventory/inventory.controller';
 import {NotificationsController} from './notifications/notifications.controller';
 import {PatientController} from './patient/patient.controller';
-import {SubPatientController} from './subpatient/subpatient.controller';
+import {LoadingController} from './loading/loading.controller';
 import {SidebarController} from './dashboard_components/sidebar.controller';
 import {HistoricController} from './historic/historic.controller';
+import {ContactController} from './contact/contact.controller';
 import {sidebar} from './dashboard_components/sidebar.directive';
 import {metro_navbar} from './dashboard_components/metro-navbar.directive';
 
@@ -56,8 +57,9 @@ module healthPlatform {
     .controller('HistoricController', HistoricController)
     .controller('NotificationsController', NotificationsController)
     .controller('PatientController', PatientController)
-    .controller('SubPatientController', SubPatientController)
+    .controller('LoadingController', LoadingController)
     .controller('SidebarController', SidebarController)
+    .controller('ContactController', ContactController)
     .directive('sidebar', sidebar)
     .directive('metronavbar', metro_navbar)
     .directive('acmeNavbar', acmeNavbar)

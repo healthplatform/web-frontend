@@ -11,7 +11,7 @@ export class HistoricController {
   constructor(private $log: ng.ILogService,
               private $stateParams: IStateParamsService,
               private Historic: Historic) {
-
+    this.get();
   }
 
   get() {

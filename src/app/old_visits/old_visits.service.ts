@@ -1,7 +1,4 @@
-import {Patient, IFetchAllPatientRelated} from '../patient/patient.service';
-
 export interface IVisit {
-  medicare_no: string;
   createdAt: Date;
   updatedAt: Date;
   acuity_left_eye_num?: number;
@@ -24,50 +21,35 @@ export interface IVisit {
   callback?: Date;
   cct_right_eye?: number;
   gonio_left_eye?: number;
+  medicare_no: string;
 }
-
 
 export class Visits {
   public cache: ng.ICacheObject;
-  public patientCache: ng.ICacheObject;
 
   /* @ngInject */
   constructor(private $log: ng.ILogService,
               public $q: ng.IQService,
               public $http: ng.IHttpService,
-              private Patient: Patient,
               $cacheFactory: ng.ICacheFactoryService) {
     this.cache = $cacheFactory('Visits');
-    this.patientCache = this.Patient.cache;
   }
 
-  get(path: string): ng.IPromise<{}> {
+  get(): ng.IPromise<{}> {
     const self = this,
-      key = `[GET] /api/patient/${path}/visits`,
-      allKey = `[GET] /api/patient/${path}/all`;
-
-    if (!path) {
-      return this.$q((resolve: any, reject: (s: string) => void) => {
-        reject('path is undefined');
-      });
-    }
-
-    if (this.patientCache.get(allKey)) {
-      this.cache.put(key, (<IFetchAllPatientRelated>this.patientCache.get(allKey)).visits);
-    }
-
-    const cached_data: IVisit = <IVisit>this.cache.get(key);
+      key = '[GET] /api/old_visits',
+      cached_data: IVisit[] = <IVisit[]>this.cache.get(key);
 
     if (cached_data) {
-      return this.$q((resolve: (arg: IVisit) => void) =>
+      return this.$q((resolve: (arg: IVisit[]) => void) =>
         resolve(cached_data)
       );
     } else {
       const deferred = this.$q.defer();
-      this.$http.get(`/api/patient/${path}/visits`).then(
+      this.$http.get('/api/old_visits').then(
         function (response: ng.IHttpPromiseCallbackArg<{visits: IVisit[]}>) {
-          self.cache.put(key, response.data.visits);
-          deferred.resolve(response.data.visits);
+          self.cache.put(key, <IVisit[]>response.data.visits);
+          deferred.resolve(<IVisit[]>response.data.visits);
         },
         function (errors: ng.IHttpPromiseCallbackArg<{message?: string, error_message?: string}>) {
           self.$log.debug(errors);

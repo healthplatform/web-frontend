@@ -40,7 +40,7 @@ export class AuthController {
       localStorage.setItem('email', this.credentials.email);
       localStorage.setItem('base_email', base_email);
 
-      this.$state.go('subdash.visits');
+      this.$state.go('subdash.patients');
     } else {
       const error_description: string =
         this.credentials.email && AuthController.isEmail(this.credentials.email)

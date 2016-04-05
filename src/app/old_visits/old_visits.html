@@ -1,0 +1,52 @@
+<h1 class="text-light">Patient visits <span class="mif-ambulance place-right"></span></h1>
+<hr class="thin bg-grayLighter">
+
+<div data-role="preloader" data-type="cycle" data-style="color" ng-hide="visits.summary.length"></div>
+
+<table class="dataTable border bordered" data-auto-width="false" ng-show="visits.summary.length">
+  <thead>
+  <tr>
+    <td class="sortable-column" style="width: 100px"
+        ng-class="{'sort-asc': visits.sortType === 'medicare_no',
+                           'sort-desc': visits.sortType === '-medicare_no'}"
+        ng-click="visits.sortType = visits.sortType === 'medicare_no'? '-'+visits.sortType: 'medicare_no'">
+      Medicare #
+    </td>
+    <td class="sortable-column"
+        ng-class="{'sort-asc': visits.sortType === 'name',
+                           'sort-desc': visits.sortType === '-name'}"
+        ng-click="visits.sortType = visits.sortType === 'name'? '-'+visits.sortType: 'name'">
+      Name
+    </td>
+    <td class="sortable-column"
+        ng-class="{'sort-asc': visits.sortType === 'suburb',
+                           'sort-desc': visits.sortType === '-suburb'}"
+        ng-click="visits.sortType = visits.sortType === 'suburb'? '-'+visits.sortType: 'suburb'">
+      Suburb
+    </td>
+    <td class="sortable-column" style="width: 110px"
+        ng-class="{'sort-asc': visits.sortType === 'callback',
+                           'sort-desc': visits.sortType === '-callback'}"
+        ng-click="visits.sortType = visits.sortType === 'callback'? '-'+visits.sortType: 'callback'">
+      Callback
+    </td>
+    <td class="sortable-column" style="width: 150px"
+        ng-class="{'sort-asc': visits.sortType === 'last_visit',
+                           'sort-desc': visits.sortType === '-last_visit'}"
+        ng-click="visits.sortType = visits.sortType === 'last_visit'? '-'+visits.sortType: 'last_visit'">
+      Last visit
+    </td>
+  </tr>
+  </thead>
+
+  <tbody>
+  <tr
+    ng-repeat="record in visits.summary | orderBy:visits.sortType | filter:visits.searchText">
+    <td><a ui-sref="patient_record">{{ record.medicare_no }}</a></td>
+    <td>{{ record.name }}</td>
+    <td>{{ record.suburb }}</td>
+    <td am-time-ago="record.callback"></td>
+    <td am-time-ago="record.createdAt"></td>
+  </tr>
+  </tbody>
+</table>

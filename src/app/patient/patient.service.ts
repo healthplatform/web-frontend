@@ -40,7 +40,6 @@ export class Patient {
   /* @ngInject */
   constructor(private $log: ng.ILogService,
               public $q: ng.IQService,
-              private $rootScope: ng.IRootScopeService,
               public $http: ng.IHttpService,
               $cacheFactory: ng.ICacheFactoryService) {
     this.cache = $cacheFactory('Patient');
@@ -117,7 +116,6 @@ export class Patient {
       key: string = `[GET] /api/patient/${path}/all`,
       cached_data: IFetchAllPatientRelated = <IFetchAllPatientRelated>this.cache.get(key);
 
-    this.$log.info('getAllById =', path);
     if (!path) {
       return this.$q((resolve: any, reject: (s: string) => void) => {
         reject('path is undefined');
@@ -133,10 +131,10 @@ export class Patient {
       );
     } else {
       this.processing ? this.processing[key] = true : this.processing = {[key]: true};
-      this.$log.info('Set this.processing');
       const deferred = this.$q.defer();
       this.$http.get(`/api/patient/${path}/all`, config).then(
         function (response: ng.IHttpPromiseCallbackArg<IFetchAllPatientRelated>) {
+          self.processing[key] = false;
           self.cache.put(key, response.data);
           self.cache.put(`GET /api/patient/${path}`, response.data.patient);
           self.cache.put(`GET /api/patient/${path}/historic`, response.data.historic);
@@ -144,6 +142,7 @@ export class Patient {
           deferred.resolve(<IFetchAllPatientRelated>response.data);
         },
         function (errors: ng.IHttpPromiseCallbackArg<{message?: string, error_message?: string}>) {
+          self.processing[key] = false;
           self.$log.debug(errors);
           if (errors.data) {
             (<any>$).Notify({

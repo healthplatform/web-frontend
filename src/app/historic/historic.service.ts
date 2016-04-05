@@ -1,4 +1,5 @@
-import {Patient} from '../patient/patient.service';
+import {Patient, IFetchAllPatientRelated} from '../patient/patient.service';
+
 export interface IPatientHistory {
   medicare_no: string;
   createdAt: Date;
@@ -35,15 +36,19 @@ export class Historic {
   get(path: string): ng.IPromise<{}> {
     const self = this,
       key = `[GET] /api/patient/${path}/historic`,
-      allKey = `[GET] /api/patient/${path}/all`,
-      cached_data: IPatientHistory = <IPatientHistory>this.cache.get(key);
+      allKey = `[GET] /api/patient/${path}/all`;
 
-    if (this.Patient.processing && this.Patient.processing[allKey]) {
-      this.$log.info('true: this.Patient.processing =', this.Patient.processing);
-      setTimeout(() => this.get(path), 15);
-    } else {
-      this.$log.info('false: this.Patient.processing =', this.Patient.processing);
+    if (!path) {
+      return this.$q((resolve: any, reject: (s: string) => void) => {
+        reject('path is undefined');
+      });
     }
+
+    if (this.patientCache.get(allKey)) {
+      this.cache.put(key, (<IFetchAllPatientRelated>this.patientCache.get(allKey)).historic);
+    }
+
+    const cached_data: IPatientHistory = <IPatientHistory>this.cache.get(key);
 
     if (cached_data) {
       return this.$q((resolve: (arg: IPatientHistory) => void) =>

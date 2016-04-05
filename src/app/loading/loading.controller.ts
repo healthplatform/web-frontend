@@ -1,24 +1,28 @@
 import {Patient, IFetchAllPatientRelated} from './../patient/patient.service';
+import IStateService = angular.ui.IStateService;
 
 interface IStateParamsService extends angular.ui.IStateParamsService {
   medicareNo: string;
 }
 
-export class SubPatientController {
+export class LoadingController {
   public allPatientRelated: IFetchAllPatientRelated;
 
   /* @ngInject */
   constructor(private $log: ng.ILogService,
               public $stateParams: IStateParamsService,
+              public $state: IStateService,
               private Patient: Patient) {
-    this.getAllById();
+    if ($state.$current.toString() === 'subdash.loading') {
+      this.getAllById();
+    }
   }
 
 
   getAllById() {
-    this.$log.info('SubPatientController::getAllById, this.$stateParams =', this.$stateParams);
     this.Patient.getAllById(this.$stateParams.medicareNo).then((allPatientRelated: IFetchAllPatientRelated) => {
         this.allPatientRelated = allPatientRelated;
+        this.$state.go('subpatient.patient', this.$stateParams);
       }
     );
   }
