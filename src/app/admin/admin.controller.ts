@@ -8,6 +8,6 @@ export class AdminController {
       content: `${p.substr(p.indexOf('.') + 1)} state not available in demo`,
       type: 'info'
     });
-    $state.go('subdash.visits');
+    $state.go('subdash.patients');
   }
 }
