@@ -1,12 +1,16 @@
 /** @ngInject */
 export function runBlock($state: ng.ui.IStateService,
                          $rootScope: ng.IRootScopeService,
+                         $http: ng.IHttpService,
+                         $log: ng.ILogService,
                          amMoment: {changeLocale(...locale: string[]): void}) {
   amMoment.changeLocale('en-AU');
 
   $rootScope.$on('$stateChangeStart',
-    function (event: ng.IAngularEvent, toState: ng.ui.IState) {
-      if (toState.name !== 'auth' && !localStorage.getItem('email')) {
+    (event: ng.IAngularEvent, toState: ng.ui.IState) => {
+      if (toState.name === 'auth') {
+        return;
+      } else if (!localStorage.getItem('token')) {
         event.preventDefault();
         (<any>$).Notify({
           caption: 'Error',
@@ -14,6 +18,8 @@ export function runBlock($state: ng.ui.IStateService,
           type: 'alert'
         });
         $state.go('auth');
+      } else {
+        $http.defaults.headers.common['X-Access-Token'] = localStorage.getItem('token');
       }
     }
   );

@@ -63,6 +63,10 @@ export function routerConfig($stateProvider: angular.ui.IStateProvider,
       controller: 'CalendarController',
       controllerAs: 'cal'
     })
+    .state('subdash.visits', {
+      url: '/visits',
+      controller: 'CalendarController'
+    })
     .state('subdash.clinic', {
       url: '/clinic',
       templateUrl: 'app/clinic/clinic.html',

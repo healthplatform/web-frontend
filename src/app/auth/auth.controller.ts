@@ -1,22 +1,17 @@
-import {Auth} from './auth.service';
-
-interface ICredentials {
-  email: string;
-  password: string;
-}
+import {Auth, IUser} from './auth.service';
 
 export class AuthController {
-  public credentials: ICredentials;
-  private sampleUsers: ICredentials[] = [
+  public credentials: IUser;
+  public token: string; // access-token
+  private sampleUsers: IUser[] = [
     {
       email: 'foo@bar.com',
-      password: 'verysecure'
+      password: 'foo '
     }
   ];
 
   /* @ngInject */
-  constructor(private $log: ng.ILogService,
-              private Auth: Auth,
+  constructor(private Auth: Auth,
               private $state: angular.ui.IStateService) {
   }
 
@@ -26,38 +21,32 @@ export class AuthController {
   }
 
   submit() {
-    if (this.sampleUsers.filter((user: ICredentials) =>
-        user.email === this.credentials.email &&
-        user.password === this.credentials.password
-      ).length) {
-      const base_email = this.credentials.email.slice(0, this.credentials.email.indexOf('@'));
-      (<any>$).Notify({
-        caption: 'Authenticated...',
-        content: `Welcome back ${base_email}`,
-        type: 'success'
-      });
-
-      localStorage.setItem('email', this.credentials.email);
-      localStorage.setItem('base_email', base_email);
-
-      this.$state.go('subdash.patients');
-    } else {
-      const error_description: string =
-        this.credentials.email && AuthController.isEmail(this.credentials.email)
-          ? 'Authentication error' : 'Invalid email';
+    if (this.credentials.email && !AuthController.isEmail(this.credentials.email)) {
       (<any>$).Notify({
         caption: 'Error',
-        content: error_description,
+        content: 'Invalid email',
         type: 'alert'
       });
     }
+    this.Auth.login(this.credentials).then((token: string) => {
+        this.token = token;
+        const base_email = this.credentials.email.slice(0, this.credentials.email.indexOf('@'));
+        localStorage.setItem('email', this.credentials.email);
+        localStorage.setItem('base_email', base_email);
+        localStorage.setItem('token', token);
+
+        (<any>$).Notify({
+          caption: 'Authenticated...',
+          content: `Welcome back ${base_email}`,
+          type: 'success'
+        });
+        this.$state.go('subdash.patients');
+      }
+    );
   }
 
   demo() {
-    this.credentials = <ICredentials>{
-        email: 'foo@bar.com',
-        password: 'verysecure'
-      } || this.sampleUsers[0];
+    this.credentials = this.sampleUsers[0];
     this.submit();
   }
 }
