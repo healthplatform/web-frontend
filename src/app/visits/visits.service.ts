@@ -2,8 +2,8 @@ import {Patient, IFetchAllPatientRelated} from '../patient/patient.service';
 
 export interface IVisit {
   medicare_no: string;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
   acuity_left_eye_num?: number;
   acuity_left_eye_den?: number;
   acuity_right_eye_num?: number;
@@ -21,7 +21,7 @@ export interface IVisit {
   refraction_left_eye?: number;
   retinal_disc_right_eye?: string;
   cct_left_eye?: number;
-  callback?: Date;
+  callback?: string;
   cct_right_eye?: number;
   gonio_left_eye?: number;
 }

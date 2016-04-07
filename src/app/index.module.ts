@@ -8,10 +8,12 @@ import {WebDevTecService} from './components/webDevTec/webDevTec.service';
 import {acmeNavbar} from './components/navbar/navbar.directive';
 import {acmeMalarkey} from './components/malarkey/malarkey.directive';
 import {Auth} from './auth/auth.service';
+import {Visit} from './visit/visit.service';
 import {Visits} from './visits/visits.service';
 import {Patient} from './patient/patient.service';
 import {Historic} from './historic/historic.service';
 import {AuthController} from './auth/auth.controller';
+import {VisitController} from './visit/visit.controller';
 import {VisitsController} from './visits/visits.controller';
 import {SubdashController} from './subdash/subdash.controller';
 import {AdminController} from './admin/admin.controller';
@@ -47,6 +49,7 @@ module healthPlatform {
     .service('Visits', Visits)
     .service('Patient', Patient)
     .service('Historic', Historic)
+    .service('Visit', Visit)
     .controller('AuthController', AuthController)
     .controller('VisitsController', VisitsController)
     .controller('SubdashController', SubdashController)
@@ -60,6 +63,7 @@ module healthPlatform {
     .controller('LoadingController', LoadingController)
     .controller('SidebarController', SidebarController)
     .controller('ContactController', ContactController)
+    .controller('VisitController', VisitController)
     .directive('sidebar', sidebar)
     .directive('metronavbar', metro_navbar)
     .directive('acmeNavbar', acmeNavbar)

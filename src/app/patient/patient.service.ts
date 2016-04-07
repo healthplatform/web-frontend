@@ -81,7 +81,14 @@ export class Patient {
       config: IRequestShortcutConfig = {params: {populate_contact: true}}): ng.IPromise<{}> {
     const self = this,
       key = `[GET] /api/patient/${path}`,
-      cached_data: IPatient = <IPatient>this.cache.get(key);
+      allKey = `[GET] /api/patient/${path}/all`;
+
+    if (this.cache.get(allKey)) {
+      this.$log.info(`Populating ${key} with ${allKey}.patient`);
+      this.cache.put(key, (<IFetchAllPatientRelated>this.cache.get(allKey)).patient);
+    }
+
+    const cached_data: IPatient = <IPatient>this.cache.get(key);
 
     if (cached_data) {
       return this.$q((resolve: (arg: IPatient) => void) =>

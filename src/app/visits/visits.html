@@ -3,6 +3,22 @@
 <div data-role="preloader" data-type="cycle" data-style="color"
      ng-hide="visits.visits"></div>
 
+<!--
 <pre ng-show="visits.visits">
   {{ visits.visits | json}}
 </pre>
+-->
+
+
+<div class="tile-group no-margin no-padding" ng-repeat="visit in visits.visits">
+  <div class="tile fg-white" data-role="tile"
+       ng-class="{'bg-lightBlue': $even, 'bg-green': $odd}">
+    <div class="tile-content iconic"
+         ui-sref="subsubpatient.visit({medicareNo: visit.medicare_no, createdAt: visit.createdAt})">
+      <span class="icon" ng-bind="visits.getDate($index).format('MMM')"></span>
+      <span class="tile-label" ng-bind="visits.getDate($index).format('Do')"></span>
+      <span class="tile-badge" am-time-ago="visits.getDate($index)"></span>
+    </div>
+  </div>
+
+</div>

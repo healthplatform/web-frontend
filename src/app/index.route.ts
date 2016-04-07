@@ -1,6 +1,34 @@
+import IState = angular.ui.IState;
+
+interface IObjectCtor extends ObjectConstructor {
+  assign(target: any, ...sources: any[]): any;
+}
+declare var Object: IObjectCtor;
+export let assign = Object.assign ? Object.assign : function (target: any, ...sources: any[]): any {
+  return;
+};
+
 /** @ngInject */
 export function routerConfig($stateProvider: angular.ui.IStateProvider,
                              $urlRouterProvider: angular.ui.IUrlRouterProvider) {
+  const subpatientViews: { [name: string]: IState } = {
+    contact: {
+      templateUrl: 'app/contact/contact.html',
+      controller: 'ContactController',
+      controllerAs: 'contact'
+    },
+    historic: {
+      templateUrl: 'app/historic/historic.html',
+      controller: 'HistoricController',
+      controllerAs: 'historic'
+    },
+    visits: {
+      templateUrl: 'app/visits/visits.html',
+      controller: 'VisitsController',
+      controllerAs: 'visits'
+    }
+  };
+
   $stateProvider
     .state('auth', {
       url: '/',
@@ -33,23 +61,21 @@ export function routerConfig($stateProvider: angular.ui.IStateProvider,
     .state('subpatient.patient', {
       url: '/patient/:medicareNo',
       templateUrl: 'app/patient/patient.html',
-      views: {
-        contact: {
-          templateUrl: 'app/contact/contact.html',
-          controller: 'ContactController',
-          controllerAs: 'contact'
-        },
-        historic: {
-          templateUrl: 'app/historic/historic.html',
-          controller: 'HistoricController',
-          controllerAs: 'historic'
-        },
-        visits: {
-          templateUrl: 'app/visits/visits.html',
-          controller: 'VisitsController',
-          controllerAs: 'visits'
+      views: subpatientViews
+    })
+    .state('subsubpatient', {
+      templateUrl: 'app/subsubpatient/subsubpatient.html',
+      abstract: true
+    })
+    .state('subsubpatient.visit', {
+      url: '/patient/:medicareNo/visit/:createdAt',
+      views: Object.assign(subpatientViews, {
+        visit: {
+          templateUrl: 'app/visit/visit.html',
+          controller: 'VisitController',
+          controllerAs: 'visit'
         }
-      }
+      })
     })
     .state('subdash.admin', {
       url: '/admin',
