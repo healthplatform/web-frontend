@@ -15,7 +15,7 @@
       "commit": "513510a89acc648422c9abb047265116198f99ee"
     },
     "jquery/jquery.d.ts": {
-      "commit": "513510a89acc648422c9abb047265116198f99ee"
+      "commit": "ec9eb4b28c74665a602c22db3457f0a76fa0fa23"
     },
     "moment/moment-node.d.ts": {
       "commit": "513510a89acc648422c9abb047265116198f99ee"
@@ -24,7 +24,7 @@
       "commit": "513510a89acc648422c9abb047265116198f99ee"
     },
     "angularjs/angular.d.ts": {
-      "commit": "513510a89acc648422c9abb047265116198f99ee"
+      "commit": "ec9eb4b28c74665a602c22db3457f0a76fa0fa23"
     },
     "angularjs/angular-animate.d.ts": {
       "commit": "513510a89acc648422c9abb047265116198f99ee"
@@ -40,6 +40,9 @@
     },
     "moment/moment.d.ts": {
       "commit": "513510a89acc648422c9abb047265116198f99ee"
+    },
+    "ng-file-upload/ng-file-upload.d.ts": {
+      "commit": "ec9eb4b28c74665a602c22db3457f0a76fa0fa23"
     }
   }
 }

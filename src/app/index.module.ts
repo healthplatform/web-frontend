@@ -11,7 +11,9 @@ import {Auth} from './auth/auth.service';
 import {Visit} from './visit/visit.service';
 import {Visits} from './visits/visits.service';
 import {Patient} from './patient/patient.service';
+import {Patients} from './patients/patients.service';
 import {Historic} from './historic/historic.service';
+import {Storage} from './storage/storage.service';
 import {AuthController} from './auth/auth.controller';
 import {VisitController} from './visit/visit.controller';
 import {VisitsController} from './visits/visits.controller';
@@ -22,12 +24,17 @@ import {ClinicController} from './clinic/clinic.controller';
 import {InventoryController} from './inventory/inventory.controller';
 import {NotificationsController} from './notifications/notifications.controller';
 import {PatientController} from './patient/patient.controller';
+import {PatientsController} from './patients/patients.controller';
 import {LoadingController} from './loading/loading.controller';
 import {SidebarController} from './dashboard_components/sidebar.controller';
 import {HistoricController} from './historic/historic.controller';
 import {ContactController} from './contact/contact.controller';
+import {StorageController} from './storage/storage.controller';
 import {sidebar} from './dashboard_components/sidebar.directive';
 import {metro_navbar} from './dashboard_components/metro-navbar.directive';
+import {patient_dash} from './patient/patient-dash.directive';
+import {patients_dash} from './patients/patients-dash.directive';
+
 
 declare var malarkey: any;
 declare var moment: moment.MomentStatic;
@@ -36,8 +43,8 @@ module healthPlatform {
   'use strict';
 
   angular.module('healthPlatform', [
-      'ngAnimate', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngAria', 'ngResource',
-      'ui.router', 'toastr', 'ui.grid', 'ui.grid.selection', 'angularMoment'])
+      'ngAnimate', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngAria', 'ngResource', 'ngFileUpload',
+      'ui.router', 'toastr', 'ui.grid', 'ui.grid.selection', 'angularMoment', '720kb.datepicker'])
     // .constant('malarkey', malarkey)
     .constant('moment', moment)
     .config(config)
@@ -46,10 +53,12 @@ module healthPlatform {
     .service('githubContributor', GithubContributor)
     .service('webDevTec', WebDevTecService)
     .service('Auth', Auth)
-    .service('Visits', Visits)
     .service('Patient', Patient)
+    .service('Patients', Patients)
     .service('Historic', Historic)
     .service('Visit', Visit)
+    .service('Visits', Visits)
+    .service('Storage', Storage)
     .controller('AuthController', AuthController)
     .controller('VisitsController', VisitsController)
     .controller('SubdashController', SubdashController)
@@ -60,12 +69,16 @@ module healthPlatform {
     .controller('HistoricController', HistoricController)
     .controller('NotificationsController', NotificationsController)
     .controller('PatientController', PatientController)
+    .controller('PatientsController', PatientsController)
     .controller('LoadingController', LoadingController)
     .controller('SidebarController', SidebarController)
     .controller('ContactController', ContactController)
     .controller('VisitController', VisitController)
+    .controller('StorageController', StorageController)
     .directive('sidebar', sidebar)
     .directive('metronavbar', metro_navbar)
+    .directive('patientdash', patient_dash)
+    .directive('patientsdash', patients_dash)
     .directive('acmeNavbar', acmeNavbar)
     .directive('acmeMalarkey', acmeMalarkey);
 }

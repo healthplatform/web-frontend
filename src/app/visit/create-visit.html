@@ -1,0 +1,199 @@
+<form data-role="validator" data-show-error-hint="false"
+      ng-submit="visit.create()">
+  <div class="flex-grid padding5">
+    <div class="row padding5">
+      <div class="cell colspan12" style="margin-top: 15px">
+
+        <div class="input-control text full-size">
+          <label for="callback"></label>
+          <span class="caption padding5">callback</span>
+          <datepicker date-format="yyyy-MM-dd">
+            <input ng-model="visit.newVisit.callback" type="text"
+                   id="callback" class="input-control text full-size"
+                   data-validate-func="required"
+                   data-validate-hint="This field can not be empty!"/>
+          </datepicker>
+          <span class="input-state-error mif-warning"></span>
+          <span class="input-state-success mif-checkmark"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row padding5">
+      <div class="cell colspan6">
+        <h3>Left eye</h3>
+      </div>
+      <div class="cell colspan6">
+        <h3>Right eye</h3>
+      </div>
+    </div>
+    <div class="row padding5">
+      <div class="cell colspan6">
+        <div class="button" ngf-select="visit.upload($file, 'retinal_disc_left_eye')"
+             ng-hide="visit.newVisit.retinal_disc_left_eye">
+          Fundus photo
+        </div>
+        <div class="button" ngf-select="visit.upload($file)" ng-show="visit.newVisit.retinal_disc_left_eye">
+          Fundus photo (replace)
+        </div>
+
+        <img ng-show="visit.newVisit.retinal_disc_left_eye"
+             ng-src="{{visit.newVisit.retinal_disc_left_eye && visit.Storage.get(visit.newVisit.retinal_disc_left_eye)}}"
+             style="max-width: 400px"
+        >
+      </div>
+      <div class="cell colspan6">
+        <div class="button" ngf-select="visit.upload($file, 'retinal_disc_right_eye')"
+             ng-hide="visit.newVisit.retinal_disc_right_eye">
+          Fundus photo
+        </div>
+        <div class="button" ngf-select="visit.upload($file)" ng-show="visit.newVisit.retinal_disc_right_eye">
+          Fundus photo (replace)
+        </div>
+        <img ng-show="visit.newVisit.retinal_disc_right_eye"
+             ng-src="{{visit.newVisit.retinal_disc_right_eye && visit.Storage.get(visit.newVisit.retinal_disc_right_eye)}}"
+             style="max-width: 400px"
+        >
+      </div>
+    </div>
+    <div class="row padding5">
+      <div class="cell colspan6">
+        <div class="input-control text flex-size2">
+          <label for="gonio_left_eye"></label>
+          <span class="caption padding5">Gonio</span>
+          <input type="text" id="gonio_left_eye" class="padding5"
+                 ng-model="visit.newVisit.gonio_left_eye">
+          <span class="input-state-error mif-warning"></span>
+          <span class="input-state-success mif-checkmark"></span>
+        </div>
+      </div>
+      <div class="cell colspan6">
+        <div class="input-control text flex-size2">
+          <label for="gonio_right_eye"></label>
+          <span class="caption padding5">Gonio</span>
+          <input type="text" id="gonio_right_eye" class="padding5"
+                 ng-model="visit.newVisit.gonio_right_eye">
+          <span class="input-state-error mif-warning"></span>
+          <span class="input-state-success mif-checkmark"></span>
+        </div>
+      </div>
+    </div>
+    <div class="row padding5">
+      <div class="cell colspan6">
+        <div class="input-control text flex-size2">
+          <label for="refraction_left_eye"></label>
+          <span class="caption padding5">refraction</span>
+          <input type="text" id="refraction_left_eye" class="padding5"
+                 ng-model="visit.newVisit.refraction_left_eye">
+          <span class="input-state-error mif-warning"></span>
+          <span class="input-state-success mif-checkmark"></span>
+        </div>
+      </div>
+      <div class="cell colspan6">
+        <div class="input-control text flex-size2">
+          <label for="refraction_right_eye"></label>
+          <span class="caption padding5">refraction</span>
+          <input type="text" id="refraction_right_eye" class="padding5"
+                 ng-model="visit.newVisit.refraction_right_eye">
+          <span class="input-state-error mif-warning"></span>
+          <span class="input-state-success mif-checkmark"></span>
+        </div>
+      </div>
+    </div>
+    <div class="row padding5">
+      <div class="cell colspan6">
+        <div class="input-control text flex-size2">
+          <label for="vf_left_eye"></label>
+          <span class="caption padding5">vf</span>
+          <input type="text" id="vf_left_eye" class="padding5"
+                 ng-model="visit.newVisit.vf_left_eye">
+          <span class="input-state-error mif-warning"></span>
+          <span class="input-state-success mif-checkmark"></span>
+        </div>
+      </div>
+      <div class="cell colspan6">
+        <div class="input-control text flex-size2">
+          <label for="vf_right_eye"></label>
+          <span class="caption padding5">vf</span>
+          <input type="text" id="vf_right_eye" class="padding5"
+                 ng-model="visit.newVisit.vf_right_eye">
+          <span class="input-state-error mif-warning"></span>
+          <span class="input-state-success mif-checkmark"></span>
+        </div>
+      </div>
+    </div>
+    <div class="row padding5">
+      <div class="cell colspan6">
+        <div class="input-control text flex-size2">
+          <label for="cct_left_eye"></label>
+          <span class="caption padding5">cct</span>
+          <input type="text" id="cct_left_eye" class="padding5"
+                 ng-model="visit.newVisit.cct_left_eye">
+          <span class="input-state-error mif-warning"></span>
+          <span class="input-state-success mif-checkmark"></span>
+        </div>
+      </div>
+      <div class="cell colspan6">
+        <div class="input-control text flex-size2">
+          <label for="cct_right_eye"></label>
+          <span class="caption padding5">cct</span>
+          <input type="text" id="cct_right_eye" class="padding5"
+                 ng-model="visit.newVisit.cct_right_eye">
+          <span class="input-state-error mif-warning"></span>
+          <span class="input-state-success mif-checkmark"></span>
+        </div>
+      </div>
+    </div>
+    <div class="row padding5">
+      <div class="cell">
+        <div class="input-control text flex-size2">
+          <label for="acuity_left_eye_num"></label>
+          <span class="caption padding5">Acuity</span>
+          <input type="text" id="acuity_left_eye_num" class="padding5"
+                 ng-model="visit.newVisit.acuity_left_eye_num">
+          <span class="input-state-error mif-warning"></span>
+          <span class="input-state-success mif-checkmark"></span>
+        </div>
+      </div>
+      /
+      <div class="cell colspan3">
+        <div class="input-control text flex-size2">
+          <label for="acuity_left_eye_den"></label>
+          <span class="caption padding5"></span>
+          <input type="text" id="acuity_left_eye_den" class="padding5"
+                 ng-model="visit.newVisit.acuity_left_eye_den">
+          <span class="input-state-error mif-warning"></span>
+          <span class="input-state-success mif-checkmark"></span>
+        </div>
+      </div>
+
+      <div class="cell" style="padding-left: 2.5rem">
+        <div class="input-control text flex-size2">
+          <label for="acuity_right_eye_den"></label>
+          <span class="caption padding5">Acuity</span>
+          <input type="text" id="acuity_right_eye_den" class="padding5"
+                 ng-model="visit.newVisit.acuity_right_eye_den">
+          <span class="input-state-error mif-warning"></span>
+          <span class="input-state-success mif-checkmark"></span>
+        </div>
+      </div>
+      /
+      <div class="cell">
+        <div class="input-control text flex-size2">
+          <label for="acuity_right_eye_num"></label>
+          <span class="caption padding5"></span>
+          <input type="text" id="acuity_right_eye_num" class="padding5"
+                 ng-model="visit.newVisit.acuity_right_eye_num">
+          <span class="input-state-error mif-warning"></span>
+          <span class="input-state-success mif-checkmark"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cell padding5">
+    <input class="button success" type="submit" value="Create visit"/>
+  </div>
+</form>
+
+<pre>newVisit = {{visit.newVisit| json}}</pre>

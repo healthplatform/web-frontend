@@ -39,3 +39,7 @@ body {
   padding: .425rem .25rem;
   z-index: 999;
 }
+
+.padding-top-lg {
+  padding-top: 15px;
+}

@@ -1,7 +1,13 @@
-<h3>Contact</h3>
+<div class="panel">
+  <div class="heading">
+    <span class="title">Contact</span>
+  </div>
+  <div class="content">
+    <div data-role="preloader" data-type="cycle" data-style="color" ng-hide="contact.contact"></div>
+    <dl ng-repeat="(key, val) in contact.contact" style="margin: 0">
+      <dt>{{key}}</dt>
+      <dd>{{key==='createdAt' || key==='updatedAt'? moment(val).fromNow(): val}}</dd>
+    </dl>
 
-<div data-role="preloader" data-type="cycle" data-style="color" ng-hide="contact.contact"></div>
-
-<pre ng-show="contact.contact">
-  {{ contact.contact | json}}
-</pre>
+  </div>
+</div>

@@ -1,0 +1,54 @@
+<div class="page-content">
+  <div class="flex-grid no-responsive-future">
+    <div class="row">
+      <div class="fluent-menu" data-role="fluentmenu">
+        <ul class="tabs-holder">
+          <li>
+            <a href="#content_id_p">
+              Patients
+            </a>
+          </li>
+        </ul>
+        <div class="tabs-content">
+          <div class="tab-panel" id="content_id_p">
+            <div class="tab-panel-group">
+              <div class="tab-group-content">
+                <div class="tab-content-segment">
+                  <button class="fluent-big-button">
+                    <span class="icon mif-user-plus"></span>
+                    Create
+                  </button>
+                </div>
+              </div>
+              <div class="tab-group-caption">Patient</div>
+            </div>
+
+            <div class="tab-panel-group">
+              <div class="tab-group-content">
+                <div class="tab-content-segment">
+                  <div class="input-control text">
+                    <label for="search"></label>
+                    <input type="text" ng-model="patients.Patients.searchText" id="search">
+                    <button class="button"><span class="mif-search"></span></button>
+                  </div>
+
+                  <button class="fluent-button dropdown-toggle">
+                    <span class="mif-filter on-left"></span>
+                    <span class="label">{{patients.Patients.sortType}}</span>
+                  </button>
+                  <ul class="d-menu" data-role="dropdown">
+                    <li ng-click="patients.Patients.sortType='medicare_no'">medicareNo</li>
+                    <li ng-click="patients.Patients.sortType='contact.first_name'">first_name</li>
+                    <li ng-click="patients.Patients.sortType='gp.last_name'">GP</li>
+                    <li ng-click="patients.Patients.sortType='last_visit'">last_visit</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="tab-group-caption">Filter</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

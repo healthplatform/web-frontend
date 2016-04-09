@@ -1,0 +1,45 @@
+<h3>All patients</h3>
+
+<div data-role="preloader" data-type="cycle" data-style="color"
+     ng-hide="patients.patients.length"></div>
+
+<table class="dataTable border bordered" data-auto-width="false" ng-show="patients.patients.length">
+  <thead>
+  <tr>
+    <td class="sortable-column" style="width: 100px"
+        ng-class="{'sort-asc': patients.Patients.sortType === 'medicare_no',
+                           'sort-desc': patients.Patients.sortType === '-medicare_no'}"
+        ng-click="patients.Patients.sortType = patients.Patients.sortType === 'medicare_no'? '-'+patients.Patients.sortType: 'medicare_no'">
+      Medicare #
+    </td>
+    <td class="sortable-column"
+        ng-class="{'sort-asc': patients.Patients.sortType === 'contact.first_name',
+                           'sort-desc': patients.Patients.sortType === '-contact.first_name'}"
+        ng-click="patients.Patients.sortType = patients.Patients.sortType === 'contact.first_name'? '-'+patients.Patients.sortType: 'contact.first_name'">
+      First name
+    </td>
+    <td class="sortable-column"
+        ng-class="{'sort-asc': patients.Patients.sortType === 'gp.last_name',
+                           'sort-desc': patients.Patients.sortType === '-gp.last_name'}"
+        ng-click="patients.Patients.sortType = patients.Patients.sortType === 'gp.last_name'? '-'+patients.Patients.sortType: 'gp.last_name'">
+      GP
+    </td>
+    <td class="sortable-column" style="width: 150px"
+        ng-class="{'sort-asc': patients.Patients.sortType === 'last_visit',
+                           'sort-desc': patients.Patients.sortType === '-last_visit'}"
+        ng-click="patients.Patients.sortType = patients.Patients.sortType === 'last_visit'? '-'+patients.Patients.sortType: 'last_visit'">
+      Last visit
+    </td>
+  </tr>
+  </thead>
+
+  <tbody>
+  <tr
+    ng-repeat="patient in patients.patients | orderBy:patients.Patients.sortType | filter:patients.Patients.searchText">
+    <td><a ui-sref="subdash.loading({medicareNo: patient.medicare_no})">{{ patient.medicare_no }}</a></td>
+    <td>{{ patient.contact.first_name }}</td>
+    <td>Dr {{ patient.gp.first_name }} {{ patient.gp.last_name }}</td>
+    <td am-time-ago="patient.createdAt"></td>
+  </tr>
+  </tbody>
+</table>

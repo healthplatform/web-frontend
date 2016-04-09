@@ -1,0 +1,94 @@
+<div class="page-content">
+  <div class="flex-grid no-responsive-future">
+    <div class="row">
+      <div class="fluent-menu" data-role="fluentmenu">
+        <ul class="tabs-holder">
+          <li>
+            <a href="#content_id_p">
+              {{patient.patient.contact.first_name}} {{patient.patient.contact.last_name}}
+            </a>
+          </li>
+        </ul>
+        <div class="tabs-content">
+          <div class="tab-panel" id="content_id_p">
+            <div class="tab-panel-group">
+              <div class="tab-group-content">
+                <div class="tab-content-segment">
+                  <button class="fluent-big-button"
+                          ui-sref="subsubpatient.createVisit({medicareNo: patient.patient.medicare_no})"
+                          data-ng-disabled="$state.is('subsubpatient.createVisit', {medicareNo: patient.patient.medicare_no})">
+                    <span class="icon mif-calendar" style="color: inherit"></span>
+                    Create
+                  </button>
+                </div>
+              </div>
+              <div class="tab-group-caption">Visit</div>
+            </div>
+            <div class="tab-panel-group" ng-show="$state.$current.toString() === 'subsubpatient.visit'">
+              <div class="tab-group-content">
+                <div class="tab-content-segment">
+                  <button class="fluent-big-button">
+                    <span class="icon mif-file-picture"></span>
+                    <span class="label">Edit</span>
+                  </button>
+                </div>
+                <div class="tab-content-segment">
+                  <button class="fluent-big-button">
+                    <span class="mif-cancel"></span>
+                    <span class="label">Delete</span>
+                  </button>
+                </div>
+              </div>
+              <div class="tab-group-caption">Visit modify</div>
+            </div>
+            <div class="tab-panel-group">
+              <div class="tab-group-content">
+                <div class="tab-content-segment">
+                  <button class="fluent-big-button">
+                    <span class="icon mif-file-picture"></span>
+                    <span class="label">Edit</span>
+                  </button>
+                </div>
+                <div class="tab-content-segment">
+                  <button class="fluent-big-button">
+                    <span class="mif-cancel"></span>
+                    <span class="label">Delete</span>
+                  </button>
+                </div>
+              </div>
+              <div class="tab-group-caption">Contact modify</div>
+            </div>
+            <div class="tab-panel-group">
+              <div class="tab-group-content">
+                <div class="tab-content-segment">
+                  <button class="fluent-big-button" ui-sref="subdash.patients">
+                    <span class="icon mif-user-plus"></span>
+                    <span class="label">All patients</span>
+                  </button>
+                </div>
+                <div class="tab-content-segment">
+                  <button class="fluent-big-button"
+                          ui-sref="subdash.loading({medicareNo: patient.patient.medicare_no})">
+                    <span class="icon mif-ambulance"></span>
+                    <span class="label">Patient record</span>
+                  </button>
+                </div>
+                <div class="tab-content-segment">
+                  <button class="fluent-big-button" data-ng-disabled="$state.is('subsubpatient.visit', {medicareNo: patient.patient.medicare_no,
+                          createdAt: patient.allPatientRelated.visits[patient.allPatientRelated.visits.length -1].createdAt})"
+                          ui-sref="subsubpatient.visit({medicareNo: patient.patient.medicare_no,
+                          createdAt: patient.allPatientRelated.visits[patient.allPatientRelated.visits.length -1].createdAt})"
+                  >
+                    <span class="icon mif-calendar" style="color: inherit"></span>
+                    <span class="label">Latest visit</span>
+                  </button>
+                </div>
+              </div>
+              <div class="tab-group-caption">Navigation</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

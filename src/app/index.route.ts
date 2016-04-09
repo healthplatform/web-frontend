@@ -42,14 +42,20 @@ export function routerConfig($stateProvider: angular.ui.IStateProvider,
       controllerAs: 'subdash',
       abstract: true
     })
+    .state('subdash.storage', {
+      url: '/storage',
+      templateUrl: 'app/storage/storage.html',
+      controller: 'StorageController',
+      controllerAs: 'storage'
+    })
     .state('subpatient', {
       templateUrl: 'app/subpatient/subpatient.html',
       abstract: true
     })
     .state('subdash.patients', {
       url: '/patients',
-      templateUrl: 'app/patient/patients.html',
-      controller: 'PatientController',
+      templateUrl: 'app/patients/patients.html',
+      controller: 'PatientsController',
       controllerAs: 'patients'
     })
     .state('subdash.loading', {
@@ -72,6 +78,16 @@ export function routerConfig($stateProvider: angular.ui.IStateProvider,
       views: Object.assign(subpatientViews, {
         visit: {
           templateUrl: 'app/visit/visit.html',
+          controller: 'VisitController',
+          controllerAs: 'visit'
+        }
+      })
+    })
+    .state('subsubpatient.createVisit', {
+      url: '/patient/:medicareNo/visit',
+      views: Object.assign(subpatientViews, {
+        visit: {
+          templateUrl: 'app/visit/create-visit.html',
           controller: 'VisitController',
           controllerAs: 'visit'
         }

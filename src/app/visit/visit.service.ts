@@ -1,15 +1,19 @@
 import {IVisit} from '../visits/visits.service';
-import {IFetchAllPatientRelated} from '../patient/patient.service';
+import {IFetchAllPatientRelated, Patient} from '../patient/patient.service';
+
 
 export class Visit {
   public cache: ng.ICacheObject;
+  public patientCache: ng.ICacheObject;
 
   /* @ngInject */
   constructor(private $log: ng.ILogService,
               public $q: ng.IQService,
               public $http: ng.IHttpService,
+              private Patient: Patient,
               $cacheFactory: ng.ICacheFactoryService) {
     this.cache = $cacheFactory('Visit');
+    this.patientCache = this.Patient.cache;
   }
 
   get(medicareNo: string, createdAt: string): ng.IPromise<{}> {
@@ -17,10 +21,13 @@ export class Visit {
       key = `[GET] /api/patient/${medicareNo}/visit/${createdAt}`,
       allKey = `[GET] /api/patient/${medicareNo}/all`;
 
-    if (this.cache.get(allKey)) {
-      this.cache.put(key, (<IFetchAllPatientRelated>this.cache.get(allKey)).visits.filter(
+    if (this.patientCache.get(allKey)) {
+      const visit = (<IFetchAllPatientRelated>this.patientCache.get(allKey)).visits.filter(
         (visit: IVisit) => visit.createdAt === createdAt
-      ));
+      );
+      if (visit.length) {
+        this.cache.put(key, visit[0]);
+      }
     }
 
     const cached_data: IVisit = <IVisit>this.cache.get(key);
@@ -50,5 +57,28 @@ export class Visit {
       );
       return deferred.promise;
     }
+  }
+
+  post(visit: IVisit): ng.IPromise<{}> {
+    const deferred = this.$q.defer(),
+      self = this;
+    this.$http.post(`/api/patient/${visit.medicare_no}/visit`, visit).then(
+      function (response: ng.IHttpPromiseCallbackArg<IVisit>) {
+        self.cache.put(`GET /api/patient/${visit.medicare_no}/visit`, response.data);
+        deferred.resolve(<IVisit>response.data);
+      },
+      function (errors: ng.IHttpPromiseCallbackArg<{message?: string, error_message?: string}>) {
+        self.$log.debug(errors);
+        if (errors.data) {
+          (<any>$).Notify({
+            caption: 'Error',
+            content: errors.data.message || errors.data.error_message || errors.data,
+            type: 'alert'
+          });
+        }
+        deferred.reject(errors);
+      }
+    );
+    return deferred.promise;
   }
 }

@@ -5,20 +5,15 @@ interface IStateParamsService extends angular.ui.IStateParamsService {
 }
 
 export class PatientController {
-  public patients: IPatient[];
   public patient: IPatient;
   public allPatientRelated: IFetchAllPatientRelated;
 
   /* @ngInject */
   constructor(private $log: ng.ILogService,
               public $stateParams: IStateParamsService,
+              public $state: ng.ui.IStateService,
               private Patient: Patient) {
-  }
-
-  getAll() {
-    this.Patient.getAll().then((patients: IPatient[]) =>
-      this.patients = patients
-    );
+    this.getAllById();
   }
 
   get() {

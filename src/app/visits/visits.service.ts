@@ -41,6 +41,11 @@ export class Visits {
     this.patientCache = this.Patient.cache;
   }
 
+  static sortVisits(visits: IVisit[]) {
+    return visits.sort((v0: IVisit, v1: IVisit) =>
+      moment(v1.createdAt, moment.ISO_8601).diff(moment(v0.createdAt, moment.ISO_8601)));
+  }
+
   get(path: string): ng.IPromise<{}> {
     const self = this,
       key = `[GET] /api/patient/${path}/visits`,
@@ -66,6 +71,7 @@ export class Visits {
       const deferred = this.$q.defer();
       this.$http.get(`/api/patient/${path}/visits`).then(
         function (response: ng.IHttpPromiseCallbackArg<{visits: IVisit[]}>) {
+          response.data.visits = Visits.sortVisits(response.data.visits);
           self.cache.put(key, response.data.visits);
           deferred.resolve(response.data.visits);
         },

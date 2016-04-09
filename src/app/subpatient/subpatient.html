@@ -1,16 +1,17 @@
 <metronavbar></metronavbar>
 
-<div class="page-content">
+<patientdash></patientdash>
+
+<div class="page-content" style="padding-top: 5px">
   <div class="flex-grid no-responsive-future">
     <div class="row">
       <sidebar></sidebar>
-
-      <div class="cell colspan8 bg-white">
+      <div class="cell colspan7 bg-white">
         <div ui-view="visits"></div>
       </div>
-      <div class="cell colspan4 bg-white">
+      <div class="cell colspan3 bg-white">
         <div ui-view="contact"></div>
-        <div ui-view="historic"></div>
+        <div ui-view="historic" style="margin-top: 2px"></div>
       </div>
     </div>
   </div>
