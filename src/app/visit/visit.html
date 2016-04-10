@@ -1,10 +1,115 @@
 <h3>Visit</h3>
 
-<pre>
-  {{ visit.visit | json }}
-</pre>
+<div class="flex-grid padding5">
+  <div class="row padding5" ng-show="visit.visit.callback">
+    <div class="cell colspan12" style="margin-top: 15px">
+      <dl>
+        <dt>callback</dt>
+        <dd>{{visit.visit.callback}}</dd>
+      </dl>
+    </div>
+  </div>
 
+  <div class="row padding5">
+    <div class="cell colspan6">
+      <h3>Left eye</h3>
+    </div>
+    <div class="cell colspan6">
+      <h3>Right eye</h3>
+    </div>
+  </div>
+  <div class="row padding5" ng-show="visit.visit.retinal_disc_left_eye || visit.visit.retinal_disc_right_eye">
+    <div class="cell colspan6">
+      <img ng-show="visit.visit.retinal_disc_left_eye"
+           ng-src="{{Storage.get(visit.visit.retinal_disc_left_eye)}}"
+           style="max-width: 400px">
+    </div>
+    <div class="cell colspan6">
+      <img ng-show="visit.visit.retinal_disc_right_eye"
+           ng-src="{{Storage.get(visit.visit.retinal_disc_right_eye)}}"
+           style="max-width: 400px">
+    </div>
+  </div>
+  <div class="row padding5" ng-show="visit.visit.gonio_left_eye || visit.visit.gonio_right_eye">
+    <div class="cell colspan6">
+      <dl>
+        <dt>gonio_left_eye</dt>
+        <dd>{{visit.visit.gonio_left_eye}}</dd>
+      </dl>
+    </div>
+    <div class="cell colspan6">
+      <dl>
+        <dt>gonio_right_eye</dt>
+        <dd>{{visit.visit.gonio_right_eye}}</dd>
+      </dl>
+    </div>
+  </div>
+  <div class="row padding5" ng-show="visit.visit.refraction_left_eye || visit.visit.refraction_right_eye">
+    <div class="cell colspan6">
+      <dl>
+        <dt>refraction</dt>
+        <dd>{{visit.visit.refraction_left_eye}}</dd>
+      </dl>
+    </div>
+    <div class="cell colspan6">
+      <dl>
+        <dt>refraction</dt>
+        <dd>{{visit.visit.refraction_right_eye}}</dd>
+      </dl>
+    </div>
+  </div>
+  <div class="row padding5" ng-show="visit.visit.vf_left_eye || visit.visit.vf_right_eye">
+    <div class="cell colspan6">
+      <dl>
+        <dt>vf</dt>
+        <dd>{{visit.visit.vf_left_eye}}</dd>
+      </dl>
+    </div>
+    <div class="cell colspan6">
+      <dl>
+        <dt>vf</dt>
+        <dd>{{visit.visit.vf_right_eye}}</dd>
+      </dl>
+    </div>
+  </div>
+  <div class="row padding5" ng-show="visit.visit.cct_left_eye || visit.visit.cct_right_eye">
+    <div class="cell colspan6">
+      <dl>
+        <dt>cct</dt>
+        <dd>{{visit.visit.cct_left_eye}}</dd>
+      </dl>
+    </div>
+    <div class="cell colspan6">
+      <dl>
+        <dt>cct</dt>
+        <dd>{{visit.visit.cct_right_eye}}</dd>
+      </dl>
+    </div>
+  </div>
+  <div class="row padding5" ng-show="visit.visit.acuity_left_eye_num || visit.visit.acuity_right_eye_den">
+    <div class="cell">
+      <dl>
+        <dt>Acuity</dt>
+        <dd>{{visit.visit.acuity_left_eye_num}}</dd>
+      </dl>
+    </div>
+    /
+    <div class="cell colspan3">
+      <dl>
+        <dd>{{visit.visit.acuity_left_eye_den}}</dd>
+      </dl>
+    </div>
 
-{{ visit.retinal_disc_left_eye | json }}
-
-{{ visit.retinal_disc_right_eye | json }}
+    <div class="cell" style="padding-left: 2.5rem">
+      <dl>
+        <dd>{{visit.visit.acuity_right_eye_den}}</dd>
+      </dl>
+    </div>
+    /
+    <div class="cell">
+      <dl>
+        <dd>{{visit.visit.acuity_right_eye_num}}</dd>
+      </dl>
+    </div>
+  </div>
+</div>

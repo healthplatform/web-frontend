@@ -28,35 +28,23 @@
               <div class="tab-group-content">
                 <div class="tab-content-segment">
                   <button class="fluent-big-button">
-                    <span class="icon mif-file-picture"></span>
-                    <span class="label">Edit</span>
-                  </button>
-                </div>
-                <div class="tab-content-segment">
-                  <button class="fluent-big-button">
-                    <span class="mif-cancel"></span>
-                    <span class="label">Delete</span>
+                    <span class="icon mif-chart-bars"></span>
+                    <span class="label">Modify</span>
                   </button>
                 </div>
               </div>
-              <div class="tab-group-caption">Visit modify</div>
+              <div class="tab-group-caption">Visit edit</div>
             </div>
             <div class="tab-panel-group">
               <div class="tab-group-content">
                 <div class="tab-content-segment">
                   <button class="fluent-big-button">
-                    <span class="icon mif-file-picture"></span>
-                    <span class="label">Edit</span>
-                  </button>
-                </div>
-                <div class="tab-content-segment">
-                  <button class="fluent-big-button">
-                    <span class="mif-cancel"></span>
-                    <span class="label">Delete</span>
+                    <span class="icon mif-contacts-dialer"></span>
+                    <span class="label">Modify</span>
                   </button>
                 </div>
               </div>
-              <div class="tab-group-caption">Contact modify</div>
+              <div class="tab-group-caption">Contact edit</div>
             </div>
             <div class="tab-panel-group">
               <div class="tab-group-content">
@@ -74,11 +62,13 @@
                   </button>
                 </div>
                 <div class="tab-content-segment">
-                  <button class="fluent-big-button" data-ng-disabled="$state.is('subsubpatient.visit', {medicareNo: patient.patient.medicare_no,
-                          createdAt: patient.allPatientRelated.visits[patient.allPatientRelated.visits.length -1].createdAt})"
+                  <button class="fluent-big-button"
+                          data-ng-disabled="$state.is('subsubpatient.visit', {
+                                                          medicareNo: patient.patient.medicare_no,
+                                                          createdAt: patient.allPatientRelated.visits[0].createdAt
+                                                      })"
                           ui-sref="subsubpatient.visit({medicareNo: patient.patient.medicare_no,
-                          createdAt: patient.allPatientRelated.visits[patient.allPatientRelated.visits.length -1].createdAt})"
-                  >
+                          createdAt: patient.allPatientRelated.visits[0].createdAt})">
                     <span class="icon mif-calendar" style="color: inherit"></span>
                     <span class="label">Latest visit</span>
                   </button>

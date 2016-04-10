@@ -74,7 +74,7 @@ export class Storage {
     }).then(function (resp: IProgressEvent) {
       console.log('resp.config.data =', resp.config.data);
       if (resp.config.data.file) {
-        console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
+        console.log(`Success '${resp.config.data.file.name}' uploaded. Response: ${resp.data}`);
         deferred.resolve(finalUrl);
       } else {
         deferred.reject('resp.config.data.file undefined');

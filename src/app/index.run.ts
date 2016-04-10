@@ -1,9 +1,12 @@
+import {Storage} from './storage/storage.service';
+
 import Moment = moment.Moment;
 
 export interface IRootScopeService extends ng.IRootScopeService {
   navigated: boolean;
   $state: ng.ui.IStateService;
   moment: Moment;
+  Storage: Storage;
 }
 
 
@@ -13,12 +16,14 @@ export function runBlock($state: ng.ui.IStateService,
                          $http: ng.IHttpService,
                          $log: ng.ILogService,
                          moment: Moment,
-                         amMoment: {changeLocale(...locale: string[]): void}) {
+                         amMoment: {changeLocale(...locale: string[]): void},
+                         Storage: Storage) {
   amMoment.changeLocale('en-AU');
 
   $rootScope.$state = $state;
   $rootScope.navigated = false;
   $rootScope.moment = moment;
+  $rootScope.Storage = Storage;
 
   $rootScope.$on('$stateChangeStart',
     (event: ng.IAngularEvent, toState: ng.ui.IState, toParams: any, fromState: ng.ui.IState) => {
