@@ -1,19 +1,27 @@
-import {IVisit} from '../visits/visits.service';
+import {IVisit, Visits} from '../visits/visits.service';
 import {IFetchAllPatientRelated, Patient} from '../patient/patient.service';
 
 
-export class Visit {
+export class Visit implements ng.IServiceProvider {
   public cache: ng.ICacheObject;
   public patientCache: ng.ICacheObject;
+  public visitsCache: ng.ICacheObject;
 
   /* @ngInject */
   constructor(private $log: ng.ILogService,
               public $q: ng.IQService,
               public $http: ng.IHttpService,
-              private Patient: Patient,
+              private $rootScope: ng.IRootScopeService,
+              Patient: Patient,
+              Visits: Visits,
               $cacheFactory: ng.ICacheFactoryService) {
     this.cache = $cacheFactory('Visit');
-    this.patientCache = this.Patient.cache;
+    this.visitsCache = Visits.cache;
+    this.patientCache = Patient.cache;
+  }
+
+  public $get(): Visit {
+    return this;
   }
 
   get(medicareNo: string, createdAt: string): ng.IPromise<{}> {
@@ -64,7 +72,9 @@ export class Visit {
       self = this;
     this.$http.post(`/api/patient/${visit.medicare_no}/visit`, visit).then(
       function (response: ng.IHttpPromiseCallbackArg<IVisit>) {
-        self.cache.put(`GET /api/patient/${visit.medicare_no}/visit`, response.data);
+        self.$rootScope.$broadcast('visit::new', response.data);
+        self.$log.info('visit:new sent');
+        self.visitsCache.put(`GET /api/patient/${visit.medicare_no}/visit`, response.data);
         deferred.resolve(<IVisit>response.data);
       },
       function (errors: ng.IHttpPromiseCallbackArg<{message?: string, error_message?: string}>) {

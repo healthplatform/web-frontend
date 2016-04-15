@@ -29,7 +29,7 @@ export class Storage {
   }
 
   get(filename: string, uploader: string = localStorage.getItem('email')): string {
-    return `/api/storage/${uploader}/${filename}?access_token=${localStorage.getItem('token')}`;
+    return filename ? `/api/storage/${uploader}/${filename}?access_token=${localStorage.getItem('token')}` : '';
   }
 
   getOld(uploader: string, filename: string): ng.IPromise<{}> {

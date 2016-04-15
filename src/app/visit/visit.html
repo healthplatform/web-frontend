@@ -10,12 +10,35 @@
     </div>
   </div>
 
+  <div class="row padding5" ng-show="visit.visit.reason">
+    <div class="cell colspan12" style="margin-top: 15px">
+      <dl>
+        <dt>Reason</dt>
+        <dd>{{visit.visit.reason}}</dd>
+      </dl>
+    </div>
+  </div>
+
   <div class="row padding5">
     <div class="cell colspan6">
       <h3>Left eye</h3>
     </div>
     <div class="cell colspan6">
       <h3>Right eye</h3>
+    </div>
+  </div>
+  <div class="row padding5" ng-show="visit.visit.iop_left_eye || visit.visit.iop_right_eye">
+    <div class="cell colspan6">
+      <dl>
+        <dt>iop</dt>
+        <dd>{{visit.visit.iop_left_eye}}</dd>
+      </dl>
+    </div>
+    <div class="cell colspan6">
+      <dl>
+        <dt>iop</dt>
+        <dd>{{visit.visit.iop_right_eye}}</dd>
+      </dl>
     </div>
   </div>
   <div class="row padding5" ng-show="visit.visit.retinal_disc_left_eye || visit.visit.retinal_disc_right_eye">

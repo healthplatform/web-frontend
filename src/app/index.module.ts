@@ -35,7 +35,6 @@ import {metro_navbar} from './dashboard_components/metro-navbar.directive';
 import {patient_dash} from './patient/patient-dash.directive';
 import {patients_dash} from './patients/patients-dash.directive';
 
-
 declare var malarkey: any;
 declare var moment: moment.MomentStatic;
 
@@ -44,7 +43,8 @@ module healthPlatform {
 
   angular.module('healthPlatform', [
       'ngAnimate', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngAria', 'ngResource', 'ngFileUpload',
-      'ui.router', 'toastr', 'ui.grid', 'ui.grid.selection', 'angularMoment', '720kb.datepicker'])
+      'ui.router', 'toastr', 'ui.grid', 'ui.grid.selection', 'angularMoment', '720kb.datepicker',
+      'textAngular'])
     // .constant('malarkey', malarkey)
     .constant('moment', moment)
     .config(config)

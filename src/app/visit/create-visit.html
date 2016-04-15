@@ -20,6 +20,15 @@
     </div>
 
     <div class="row padding5">
+      <div class="cell colspan12" style="margin-top: 15px">
+        <div text-angular ng-model="visit.newVisit.reason"
+             data-placeholder="Reason" data-name="reason"
+             class="ta-text ta-editor form-content"
+             data-ta-toolbar="[['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol']]"></div>
+      </div>
+    </div>
+
+    <div class="row padding5">
       <div class="cell colspan6">
         <h3>Left eye</h3>
       </div>
@@ -54,6 +63,28 @@
              ng-src="{{visit.newVisit.retinal_disc_right_eye && visit.Storage.get(visit.newVisit.retinal_disc_right_eye)}}"
              style="max-width: 400px"
         >
+      </div>
+    </div>
+    <div class="row padding5">
+      <div class="cell colspan6">
+        <div class="input-control text flex-size2">
+          <label for="iop_left_eye"></label>
+          <span class="caption padding5">IOP</span>
+          <input type="text" id="iop_left_eye" class="padding5"
+                 ng-model="visit.newVisit.iop_left_eye">
+          <span class="input-state-error mif-warning"></span>
+          <span class="input-state-success mif-checkmark"></span>
+        </div>
+      </div>
+      <div class="cell colspan6">
+        <div class="input-control text flex-size2">
+          <label for="iop_right_eye"></label>
+          <span class="caption padding5">IOP</span>
+          <input type="text" id="iop_right_eye" class="padding5"
+                 ng-model="visit.newVisit.iop_right_eye">
+          <span class="input-state-error mif-warning"></span>
+          <span class="input-state-success mif-checkmark"></span>
+        </div>
       </div>
     </div>
     <div class="row padding5">

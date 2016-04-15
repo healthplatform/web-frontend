@@ -58,6 +58,12 @@ export function routerConfig($stateProvider: angular.ui.IStateProvider,
       controller: 'PatientsController',
       controllerAs: 'patients'
     })
+    .state('subdash.createPatient', {
+      url: '/patient',
+      templateUrl: 'app/patient/create-patient.html',
+      controller: 'PatientController',
+      controllerAs: 'patient'
+    })
     .state('subdash.loading', {
       templateUrl: 'app/loading/loading.html',
       controller: 'LoadingController',

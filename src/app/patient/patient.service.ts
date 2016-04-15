@@ -140,4 +140,27 @@ export class Patient {
       return deferred.promise;
     }
   }
+
+  post(patient: IPatient): ng.IPromise<{}> {
+    const deferred = this.$q.defer(),
+      self = this;
+    this.$http.post('/api/patient', patient).then(
+      function (response: ng.IHttpPromiseCallbackArg<IPatient>) {
+        self.cache.put(`GET /api/patient/${patient.medicare_no}`, response.data);
+        deferred.resolve(<IPatient>response.data);
+      },
+      function (errors: ng.IHttpPromiseCallbackArg<{message?: string, error_message?: string}>) {
+        self.$log.debug(errors);
+        if (errors.data) {
+          (<any>$).Notify({
+            caption: 'Error',
+            content: errors.data.message || errors.data.error_message || errors.data,
+            type: 'alert'
+          });
+        }
+        deferred.reject(errors);
+      }
+    );
+    return deferred.promise;
+  }
 }

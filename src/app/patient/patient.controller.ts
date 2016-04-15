@@ -5,8 +5,9 @@ interface IStateParamsService extends angular.ui.IStateParamsService {
 }
 
 export class PatientController {
-  public patient: IPatient;
   public allPatientRelated: IFetchAllPatientRelated;
+  public patient: IPatient;
+  private newPatient: IPatient;
 
   /* @ngInject */
   constructor(private $log: ng.ILogService,
@@ -29,5 +30,27 @@ export class PatientController {
         this.patient = allPatientRelated.patient;
       }
     );
+  }
+
+  create() {
+    if (!this.newPatient || !this.newPatient.contact) {
+      (<any>$).Notify({
+        caption: 'Invalid patient',
+        content: 'Fill it in, and set contact',
+        type: 'alert'
+      });
+      return;
+    }
+    this.newPatient.contact.description = 'patient';
+    this.Patient.post(this.newPatient).then((patient: IPatient) => {
+      this.patient = patient;
+      (<any>$).Notify({
+        caption: 'Created patient',
+        content: `With id: ${patient.medicare_no} at: ${patient.createdAt}`,
+        type: 'success'
+      });
+
+      this.$state.go('subdash.loading', {medicareNo: patient.medicare_no});
+    });
   }
 }

@@ -58,7 +58,8 @@ export class Visits {
     }
 
     if (this.patientCache.get(allKey)) {
-      this.cache.put(key, (<IFetchAllPatientRelated>this.patientCache.get(allKey)).visits);
+      const visits = (<IFetchAllPatientRelated>this.patientCache.get(allKey)).visits;
+      this.cache.put(key, visits);
     }
 
     const cached_data: IVisit = <IVisit>this.cache.get(key);

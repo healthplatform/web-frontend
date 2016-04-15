@@ -1,0 +1,74 @@
+<div class="flex-grid">
+  <form data-role="validator" data-show-error-hint="false"
+        ng-submit="patient.create()">
+    <div class="row padding10">
+      <div class="cell colspan12" style="margin-top: 15px">
+
+        <div class="input-control text full-size">
+          <label for="medicare_no"></label>
+          <span class="caption padding5">Medicare no</span>
+
+          <input ng-model="patient.newPatient.medicare_no" type="text"
+                 id="medicare_no" class="input-control text full-size"
+                 data-validate-func="required"
+                 data-validate-hint="This field can not be empty!"/>
+
+          <span class="input-state-error mif-warning"></span>
+          <span class="input-state-success mif-checkmark"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row padding5">
+      <div class="cell colspan6 padding5">
+        <div class="input-control text flex-size2 full-size">
+          <label for="contact.first_name"></label>
+          <span class="caption padding5">First name</span>
+          <input type="text" id="contact.first_name" class="padding5"
+                 ng-model="patient.newPatient.contact.first_name">
+          <span class="input-state-error mif-warning"></span>
+          <span class="input-state-success mif-checkmark"></span>
+        </div>
+      </div>
+      <div class="cell colspan6 padding5">
+        <div class="input-control text flex-size2 full-size">
+          <label for="contact.last_name"></label>
+          <span class="caption padding5">Last name</span>
+          <input type="text" id="contact.last_name" class="padding5"
+                 ng-model="patient.newPatient.contact.last_name">
+          <span class="input-state-error mif-warning"></span>
+          <span class="input-state-success mif-checkmark"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row padding5">
+      <div class="cell colspan6 padding5">
+        <div class="input-control text flex-size2 full-size">
+          <label for="contact.street"></label>
+          <span class="caption padding5">street</span>
+          <input type="text" id="contact.street" class="padding5"
+                 ng-model="patient.newPatient.contact.street">
+          <span class="input-state-error mif-warning"></span>
+          <span class="input-state-success mif-checkmark"></span>
+        </div>
+      </div>
+      <div class="cell colspan6 padding5">
+        <div class="input-control text flex-size2 full-size">
+          <label for="contact.suburb"></label>
+          <span class="caption padding5">suburb</span>
+          <input type="text" id="contact.suburb" class="padding5"
+                 ng-model="patient.newPatient.contact.suburb">
+          <span class="input-state-error mif-warning"></span>
+          <span class="input-state-success mif-checkmark"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cell padding10">
+      <input class="button success" type="submit" value="Create patient"/>
+    </div>
+  </form>
+</div>
+
+<pre>newPatient = {{patient.newPatient| json}}</pre>

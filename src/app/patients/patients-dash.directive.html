@@ -14,7 +14,7 @@
             <div class="tab-panel-group">
               <div class="tab-group-content">
                 <div class="tab-content-segment">
-                  <button class="fluent-big-button">
+                  <button class="fluent-big-button" ui-sref=".createPatient">
                     <span class="icon mif-user-plus"></span>
                     Create
                   </button>
@@ -23,7 +23,7 @@
               <div class="tab-group-caption">Patient</div>
             </div>
 
-            <div class="tab-panel-group">
+            <div class="tab-panel-group" ng-hide="$state.$current.toString() === 'subdash.createPatient'">
               <div class="tab-group-content">
                 <div class="tab-content-segment">
                   <div class="input-control text">
@@ -46,8 +46,23 @@
               </div>
               <div class="tab-group-caption">Filter</div>
             </div>
+
+
+            <div class="tab-panel-group" ng-show="$state.$current.toString() === 'subdash.createPatient'">
+              <div class="tab-group-content">
+                <div class="tab-content-segment">
+                  <button class="fluent-big-button" ui-sref="subdash.patients">
+                    <span class="icon mif-users"></span>
+                    <span class="label">All patients</span>
+                  </button>
+                </div>
+              </div>
+              <div class="tab-group-caption">Navigation</div>
+            </div>
+
           </div>
         </div>
+
       </div>
     </div>
   </div>
